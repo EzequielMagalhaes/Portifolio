@@ -1,15 +1,16 @@
 <template>
-<HelloWorld></HelloWorld>
+  <div class="p-10 px-20">
+    <Navbar/>
+    <hr class="border-t-2 border-gray-300 my-4"/>
+    <Header/>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Navbar from './components/Navbar.vue'
+import Header from './components/Header.vue'
 export default {
-  components: { HelloWorld },
+  components: { Navbar, Header },
 
 }
 </script>
-
-<style>
-
-</style>
