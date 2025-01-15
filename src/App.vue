@@ -1,7 +1,7 @@
 <template>
-  <div class="p-10 px-20 flex flex-col gap-5">
+  <div class="p-5 px-20 flex flex-col gap-5">
     <Navbar/>
-    <hr class="border-t-2 border-gray-300 my-4"/>
+    <hr class="border-t-2 border-gray-300"/>
     <Header/>
     <About/>
   </div>
