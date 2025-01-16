@@ -3,7 +3,7 @@
     <h1 class="text-3xl">Hi I'm Ezequiel</h1>
     <div class="flex items-center">
       <span id="typed-text" class="text-5xl text-gray-300 font-bold">{{ typeValue }}</span>
-      <span id="cursor" class="text-4xl text-gray-300" :class="{'typing': typeStatus, 'blinking': !typeStatus}">&nbsp;</span>
+      <span id="cursor" class="text-4xl text-gray-300" :class="{ cursor : true, typing : typeStatus}">|</span>
     </div>
     <!-- IMAGES -->
     <img src="../assets/coding.png" class="h-[400px]" alt="coding.png">
@@ -23,71 +23,59 @@ export default {
       typeArray: ['SOFTWARE DEVELOPER', 'WEB DEVELOPER'],
       typingSpeed: 70,
       erasingSpeed: 70,
-      newTextDelay: 2000,
+      newTextDelay: 3000,
       typeArrayIndex: 0,
       charIndex: 0
     }
   },
+  mounted(){
+    this.startTyping();
+  },
   methods: {
-    typeText() {
-      if(this.charIndex < this.typeArray[this.typeArrayIndex].length) {
-        if(!this.typeStatus)
-          this.typeStatus = true;
-
-        this.typeValue += this.typeArray[this.typeArrayIndex].charAt(this.charIndex);
-        this.charIndex += 1;
-
-        setTimeout(this.typeText, this.typingSpeed);
-      }
-      else {
+    startTyping() {
+      this.typeStatus = true;
+      this.typeNextCharacter();
+    },
+    typeNextCharacter(){
+      const currentText = this.typeArray[this.typeArrayIndex];
+      if(this.charIndex < currentText.length){
+        this.typeValue += currentText[this.charIndex];
+        this.charIndex++;
+        setTimeout(this.typeNextCharacter, this.typingSpeed);
+      } else {
         this.typeStatus = false;
         setTimeout(this.eraseText, this.newTextDelay);
       }
     },
-    eraseText() {
-      if(this.charIndex > 0) {
-        if(!this.typeStatus)
-          this.typeStatus = true;
-
-        this.typeValue = this.typeArray[this.typeArrayIndex].substring(0, this.charIndex - 1);
-        this.charIndex -= 1;
+    eraseText(){
+      this.typeStatus = true;
+      if(this.charIndex > 0){
+        this.typeValue = this.typeValue.slice(0, -1);
+        this.charIndex--;
         setTimeout(this.eraseText, this.erasingSpeed);
-      }
-      else {
+      } else {
         this.typeStatus = false;
-        this.typeArrayIndex += 1;
-        if(this.typeArrayIndex >= this.typeArray.length)
-          this.typeArrayIndex = 0;
-
-        setTimeout(this.typeText, this.typingSpeed + 1000);
+        this.typeArrayIndex = (this.typeArrayIndex + 1) % this.typeArray.length;
+        this.startTyping();
       }
     }
   },
-  created() {
-    setTimeout(this.typeText, this.newTextDelay + 200);
-  }
 }
 </script>
 
 <style scoped>
-.typing {
+.cursor {
+  font-size: 50px;
   display: inline-block;
-  margin-left: 3px;
-  width: 4px;
-  background-color: transparent;
+  background-color: black;
+  animation: blink 1s step-end infinite;
 }
 
-.blinking {
-  display: inline-block;
-  margin-left: 3px;
-  width: 4px;
-  background-color: #d1d5db;
-  animation: cursorBlink 1s infinite;
+.cursor.typing {
+  animation: none;
 }
 
-@keyframes cursorBlink {
-  49% { background-color: #d1d5db; }
-  50% { background-color: transparent; }
-  99% { background-color: transparent; }
+@keyframes blink {
+  50% { opacity: 0; }
 }
 </style>
