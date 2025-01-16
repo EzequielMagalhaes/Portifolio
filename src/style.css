@@ -1,15 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700;900&display=swap');
-
 body {
     background-color: black;
     color: white;
     font-family: 'Roboto', sans-serif;
 }
-
+/* MARCADOR DE MARGENS */
 /*{
     box-shadow: 0px 0px 1px gray;
-}
-*/
+}*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
