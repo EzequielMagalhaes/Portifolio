@@ -43,7 +43,7 @@
                 <div class="w-2/6 flex flex-col gap-5">
                     <!-- CARD 4 -->
                     <div class="rounded-xl p-5 bg-gray-900">
-                        <div class="space-y-3   ">
+                        <div class="space-y-3">
                             <img src="../assets/placeholder-3x4.jpg" class="h-72 mx-auto rounded-3xl" alt="foto-4.jpg">
                             <h1 class="text-xl font-bold text-grey-300 mb-5">Título do Card</h1>
                         </div>
