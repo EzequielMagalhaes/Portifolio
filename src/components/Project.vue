@@ -18,18 +18,19 @@
                     </div>
                     <!-- END STACK -->
                     <div class="flex gap-2 items-center text-xl">
-                        <button @click="redirect" id="goto-site" class="p-2 rounded-lg flex items-center gap-2 hover:bg-gray-600">
-                            <span>Go to Site</span>
-                            <img src="../assets/arrow-site.png" class="h-8" alt="arrow-site">
+                        <button @click="redirect" id="goto-site" class="text-black bg-gray-300 p-2 rounded-lg flex items-center gap-2 hover:bg-black hover:text-gray-300">
+                            <span class="">Go to Site</span>
+                            <img id="site1" src="../assets/black-site-arrow.png" class="h-8" alt="arrow-site">
+                            <img id="site2" src="../assets/white-site-arrow.png" class="h-8 hidden" alt="arrow-site">
                         </button>
                     </div>
                 </div>
                 <!-- CAROUSEL -->
                 <div class="flex justify-between items-center w-full">
                     <!-- PREV BUTTON -->
-                    <button id="prev-image" class="h-10 w-40 cursor-pointer hover:bg-gray-600 rounded-xl flex items-center justify-center">
-                        <img class="h-8" src="../assets/left-arrow.png" alt="arrow-carousel">
-                        <span class="ml-2">Prev</span>
+                    <button id="prev-image" class="bg-gray-300 h-10 w-10 cursor-pointer hover:bg-black rounded-full flex items-center justify-center relative">
+                        <img id="left1" class="h-8" src="../assets/black-left-arrow.png" alt="arrow-carousel">
+                        <img id="left2" class="h-8 hidden absolute" src="../assets/white-left-arrow.png" alt="arrow-carousel">
                     </button>
                     <!-- NEXT BUTTON -->
                     <!-- DOTS -->
@@ -42,9 +43,9 @@
                     </div>
                     <!-- END DOTS -->
                     <!-- NEXT BUTTON -->
-                    <button id="next-image" class="h-10 w-40 cursor-pointer hover:bg-gray-600 rounded-xl flex items-center justify-center">
-                        <span class="mr-2">Next</span>
-                        <img class="h-8" src="../assets/right-arrow.png" alt="arrow-carousel">
+                    <button id="next-image" class="bg-gray-300 h-10 w-10 cursor-pointer hover:bg-black rounded-full flex items-center justify-center relative">
+                        <img id="right1" class="h-8" src="../assets/black-right-arrow.png" alt="arrow-carousel">
+                        <img id="right2" class="h-8 hidden absolute" src="../assets/white-right-arrow.png" alt="arrow-carousel">
                     </button>
                     <!-- END NEXT BUTTON -->
                 </div>
@@ -88,5 +89,17 @@ export default {
     border-radius: 3px;
     font-size: 12px;
     white-space: nowrap;
+}
+
+button:hover #site1,
+button:hover #left1,
+button:hover #right1 {
+    display: none;
+}
+
+button:hover #site2,
+button:hover #left2,
+button:hover #right2 {
+    display: block;
 }
 </style>
