@@ -51,9 +51,9 @@ export default {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     },
     handleScroll() {
-      const projectsSection = document.getElementById('projects');
-      if (projectsSection) {
-        const rect = projectsSection.getBoundingClientRect();
+      const aboutSection = document.getElementById('about');
+      if (aboutSection) {
+        const rect = aboutSection.getBoundingClientRect();
         this.showScrollButton = rect.top <= window.innerHeight;
       }
     },
