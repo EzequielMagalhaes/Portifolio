@@ -7,7 +7,7 @@
                 <p class="text-gray-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien.</p>
                 <div class="flex items-center justify-between 2-full">
                     <div class="flex gap-2">
-                        <img src="../assets/Foto de perfil.png" class="h-14 w-14 rounded-full" alt="review1">
+                        <img src="../assets/placeholder-3x4.jpg" class="h-14 w-14 rounded-full" alt="review1">
                         <div>
                             <h1 class="text-xl font-bold">John Doe</h1>
                             <p class="text-gray-500">Designer & Developer</p>
@@ -28,7 +28,7 @@
                 <p class="text-gray-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien.</p>
                 <div class="flex items-center justify-between 2-full">
                     <div class="flex gap-2">
-                        <img src="../assets/Foto de perfil.png" class="h-14 w-14 rounded-full" alt="review2">
+                        <img src="../assets/placeholder-3x4.jpg" class="h-14 w-14 rounded-full" alt="review2">
                         <div>
                             <h1 class="text-xl font-bold">John Doe</h1>
                             <p class="text-gray-500">Designer & Developer</p>
@@ -49,7 +49,7 @@
                 <p class="text-gray-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien.</p>
                 <div class="flex items-center justify-between 2-full">
                     <div class="flex gap-2">
-                        <img src="../assets/Foto de perfil.png" class="h-14 w-14 rounded-full" alt="review3">
+                        <img src="../assets/placeholder-3x4.jpg" class="h-14 w-14 rounded-full" alt="review3">
                         <div>
                             <h1 class="text-xl font-bold">John Doe</h1>
                             <p class="text-gray-500">Designer & Developer</p>
@@ -70,7 +70,7 @@
                 <p class="text-gray-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien.</p>
                 <div class="flex items-center justify-between 2-full">
                     <div class="flex gap-2">
-                        <img src="../assets/Foto de perfil.png" class="h-14 w-14 rounded-full" alt="review4">
+                        <img src="../assets/placeholder-3x4.jpg" class="h-14 w-14 rounded-full" alt="review4">
                         <div>
                             <h1 class="text-xl font-bold">John Doe</h1>
                             <p class="text-gray-500">Designer & Developer</p>
