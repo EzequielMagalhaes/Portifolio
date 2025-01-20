@@ -2,8 +2,8 @@
   <header class="flex flex-col items-center justify-center gap-2 h-[650px] relative font-roboto">
     <h1 class="text-3xl">Hi I'm Ezequiel</h1>
     <div class="flex items-center">
-      <span id="typed-text" class="text-5xl text-gray-300 font-bold">{{ typeValue }}</span>
-      <span id="cursor" class="text-4xl text-gray-300" :class="{ cursor : true, typing : typeStatus}">|</span>
+      <span id="typed-text" class="text-5xl text-neutral-300 font-bold">{{ typeValue }}</span>
+      <span id="cursor" class="text-4xl text-neutral-300" :class="{ cursor : true, typing : typeStatus}">|</span>
     </div>
     <!-- IMAGES -->
     <img src="../assets/coding.png" class="h-[400px]" alt="coding.png">
