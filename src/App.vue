@@ -5,6 +5,7 @@
     <Header/>
     <About/>
     <Project/>
+    <Clients/>
   </div>
 </template>
 
@@ -13,7 +14,8 @@ import Navbar from './components/Navbar.vue'
 import Header from './components/Header.vue'
 import About from './components/About.vue'
 import Project from './components/Project.vue'
+import Clients from './components/Clients.vue'
 export default {
-  components: { Navbar, Header, About, Project },
+  components: { Navbar, Header, About, Project, Clients },
 }
 </script>
