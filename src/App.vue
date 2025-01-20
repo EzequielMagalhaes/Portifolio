@@ -8,6 +8,7 @@
     <Clients/>
     <Experience/>
     <Contact/>
+    <Footer/>
   </div>
 </template>
 
@@ -19,7 +20,8 @@ import Project from './components/Project.vue'
 import Clients from './components/Clients.vue'
 import Experience from './components/Experience.vue'
 import Contact from './components/Contact.vue'
+import Footer from './components/Footer.vue'
 export default {
-  components: { Navbar, Header, About, Project, Clients, Experience, Contact },
+  components: { Navbar, Header, About, Project, Clients, Experience, Contact, Footer },
 }
 </script>
