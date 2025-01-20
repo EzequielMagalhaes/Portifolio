@@ -18,7 +18,7 @@
                     </div>
                     <!-- END STACK -->
                     <div class="flex gap-2 items-center text-xl">
-                        <button @click="redirect" id="goto-site" class="text-black bg-gray-300 p-2 rounded-lg flex items-center gap-2 hover:bg-black hover:text-gray-300">
+                        <button @click="redirect" id="goto-site" class="text-black bg-gray-300 p-2 rounded-full flex items-center gap-2 hover:bg-black hover:text-gray-300">
                             <span class="">Go to Site</span>
                             <img id="site1" src="../assets/black-site-arrow.png" class="h-8" alt="arrow-site">
                             <img id="site2" src="../assets/white-site-arrow.png" class="h-8 hidden" alt="arrow-site">
