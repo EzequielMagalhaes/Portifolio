@@ -9,7 +9,7 @@
                 <p class="text-neutral-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien.</p>
                 <div class="flex justify-between items-center w-full">
                     <!-- STACK -->
-                    <div class="flex gap-2 items-start align-middle">
+                    <div class="flex gap-2 items-start align-middle stack-container">
                         <img src="../assets/vuejs-icon.svg" class="h-10 bg-neutral-900 p-2 rounded-lg stack-item" alt="Vue.js">
                         <img src="../assets/vuetify-icon.svg" class="h-10 bg-neutral-900 p-2 rounded-lg stack-item" alt="Vuetify">
                         <img src="../assets/javascript-icon.svg" class="h-10 bg-neutral-900 p-2 rounded-lg stack-item" alt="JavaScript">
@@ -57,49 +57,94 @@
 </template>
 
 <script>
+import { computePosition, shift, flip, offset } from "@floating-ui/dom";
 export default {
   methods: {
     redirect() {
-        window.open('https://vue-to-do-list-ochre.vercel.app/','_blank');
+      window.open('https://vue-to-do-list-ochre.vercel.app/', '_blank');
     }
-  }
-}
+  },
+    mounted() {
+    const stackItems = document.querySelectorAll(".stack-item");
+
+        stackItems.forEach((item) => {
+            let tooltip = document.createElement("div");
+            tooltip.className = "tooltip"; 
+            tooltip.innerText = item.alt;
+            document.body.appendChild(tooltip);
+
+            const showTooltip = () => {
+            tooltip.style.visibility = "visible"; // Mostrar o tooltip
+            tooltip.style.opacity = "1"; // Suavizar a opacidade
+            updateTooltipPosition();
+            };
+
+            const updateTooltipPosition = () => {
+            if (!tooltip || !item) return;
+
+            computePosition(item, tooltip, {
+                placement: "top",
+                middleware: [offset(1), flip(), shift()]
+            }).then(({ x, y }) => {
+                Object.assign(tooltip.style, {
+                position: "absolute",
+                top: `${y}px`,
+                left: `${x}px`,
+                backgroundColor: "rgba(0, 0, 0, 0.7)",
+                color: "white",
+                padding: "10px",
+                borderRadius: "3px",
+                fontSize: "15px",
+                whiteSpace: "nowrap",
+                zIndex: 1000,
+                pointerEvents: "none"
+                });
+            });
+            };
+
+            const removeTooltip = () => {
+            tooltip.style.visibility = "hidden"; // Esconder o tooltip sem removê-lo
+            tooltip.style.opacity = "0"; // Suavizar a opacidade
+            };
+
+            item.addEventListener("mouseenter", showTooltip);
+            item.addEventListener("mousemove", updateTooltipPosition);
+            item.addEventListener("mouseleave", removeTooltip);
+        });
+    }
+};
 </script>
 
 <style scoped>
+.stack-container {
+  position: relative;
+}
+
 .stack-item {
-    transition: transform 0.3s, margin 0.3s;
-    position: relative;
+  transition: transform 0.3s, margin 0.3s;
+  position: relative;
 }
 
 .stack-item:hover {
-    transform: scale(1.7);
-    margin: 0 10px;
+  transform: scale(1.7);
+  margin: 0 10px;
 }
 
-.stack-item:hover::after {
-    content: attr(alt);
-    position: absolute;
-    bottom: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 2px 5px;
-    border-radius: 3px;
-    font-size: 12px;
-    white-space: nowrap;
+.tooltip {
+  transition: opacity 0.5s ease-in-out; /* Suavizar a opacidade */
+  opacity: 0;
+  visibility: hidden;
 }
 
 button:hover #site1,
 button:hover #left1,
 button:hover #right1 {
-    display: none;
+  display: none;
 }
 
 button:hover #site2,
 button:hover #left2,
 button:hover #right2 {
-    display: block;
+  display: block;
 }
 </style>
