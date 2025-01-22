@@ -6,7 +6,7 @@
       <span id="cursor" class="text-4xl text-neutral-300" :class="{ cursor : true, typing : typeStatus}">|</span>
     </div>
     <!-- IMAGES -->
-    <img src="../assets/coding.png" class="h-[400px]" alt="coding.png">
+    <img src="../assets/Notebook.svg" class="h-[400px]" alt="Notebook.svg">
     <img src="../assets/vuejs-icon.svg" class="h-20 absolute top-10 left-10" alt="tec-icon1.png">
     <img src="../assets/typescript-icon.svg" class="h-20 absolute top-10 right-10 " alt="tec-icon2.png">
     <img src="../assets/docker-icon.svg" class="h-20 absolute bottom-10 left-10" alt="tec-icon3.png">

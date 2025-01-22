@@ -64,54 +64,58 @@ export default {
       window.open('https://vue-to-do-list-ochre.vercel.app/', '_blank');
     }
   },
-    mounted() {
+  mounted() {
     const stackItems = document.querySelectorAll(".stack-item");
 
-        stackItems.forEach((item) => {
-            let tooltip = document.createElement("div");
-            tooltip.className = "tooltip"; 
-            tooltip.innerText = item.alt;
-            document.body.appendChild(tooltip);
+    stackItems.forEach((item) => {
+      let tooltip = document.createElement("div");
+      tooltip.className = "tooltip"; 
+      tooltip.innerText = item.alt;
+      tooltip.style.visibility = "hidden";
+      tooltip.style.opacity = "0";
+      tooltip.style.position = "absolute";
+      tooltip.style.top = "0";
+      tooltip.style.left = "0";
+      document.body.appendChild(tooltip);
 
-            const showTooltip = () => {
-            tooltip.style.visibility = "visible"; // Mostrar o tooltip
-            tooltip.style.opacity = "1"; // Suavizar a opacidade
-            updateTooltipPosition();
-            };
+      const showTooltip = () => {
+        tooltip.style.visibility = "visible";
+        tooltip.style.opacity = "1";
+        updateTooltipPosition();
+      };
 
-            const updateTooltipPosition = () => {
-            if (!tooltip || !item) return;
+      const updateTooltipPosition = () => {
+        if (!tooltip || !item) return;
 
-            computePosition(item, tooltip, {
-                placement: "top",
-                middleware: [offset(1), flip(), shift()]
-            }).then(({ x, y }) => {
-                Object.assign(tooltip.style, {
-                position: "absolute",
-                top: `${y}px`,
-                left: `${x}px`,
-                backgroundColor: "rgba(0, 0, 0, 0.7)",
-                color: "white",
-                padding: "10px",
-                borderRadius: "3px",
-                fontSize: "15px",
-                whiteSpace: "nowrap",
-                zIndex: 1000,
-                pointerEvents: "none"
-                });
-            });
-            };
-
-            const removeTooltip = () => {
-            tooltip.style.visibility = "hidden"; // Esconder o tooltip sem removê-lo
-            tooltip.style.opacity = "0"; // Suavizar a opacidade
-            };
-
-            item.addEventListener("mouseenter", showTooltip);
-            item.addEventListener("mousemove", updateTooltipPosition);
-            item.addEventListener("mouseleave", removeTooltip);
+        computePosition(item, tooltip, {
+          placement: "top",
+          middleware: [offset(10), flip(), shift()]
+        }).then(({ x, y }) => {
+          Object.assign(tooltip.style, {
+            top: `${y}px`,
+            left: `${x}px`,
+            backgroundColor: "rgba(0, 0, 0, 0.7)",
+            color: "white",
+            padding: "10px",
+            borderRadius: "3px",
+            fontSize: "12px",
+            whiteSpace: "nowrap",
+            zIndex: 1000,
+            pointerEvents: "none"
+          });
         });
-    }
+      };
+
+      const removeTooltip = () => {
+        tooltip.style.visibility = "hidden";
+        tooltip.style.opacity = "0";
+      };
+
+      item.addEventListener("mouseenter", showTooltip);
+      item.addEventListener("mousemove", updateTooltipPosition);
+      item.addEventListener("mouseleave", removeTooltip);
+    });
+  }
 };
 </script>
 
@@ -131,9 +135,12 @@ export default {
 }
 
 .tooltip {
-  transition: opacity 0.5s ease-in-out; /* Suavizar a opacidade */
+  transition: opacity 0.5s ease-in-out;
   opacity: 0;
   visibility: hidden;
+  position: absolute; 
+  top: 0; 
+  left: 0; 
 }
 
 button:hover #site1,
