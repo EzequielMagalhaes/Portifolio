@@ -15,23 +15,26 @@
                 <h1 class="text-3xl font-bold text-neutral-300">Let's talk</h1>
                 <p class="text-neutral-500 text-sm">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius quia enim vero perferendis eos accusantium iure cupiditate blanditiis quisquam sapiente officia nisi alias, veritatis fugiat? Tempora asperiores autem sequi officia.</p>
                 <!-- INPUTS -->
-                <div class="flex flex-col gap-2 my-1 w-full">
-                    <div class="text-neutral-500">Full name</div>
-                    <input type="text" placeholder="Your name" class=" w-full border-b border-neutral-500 bg-neutral-700 p-1 rounded-lg">
-                </div>
+                <form @submit.prevent="validateEmail" class="w-full">
+                  <div class="flex flex-col gap-2 my-1 w-full">
+                      <div class="text-neutral-500">Full name</div>
+                      <input type="text" ref="nameInput" placeholder="Your name" class=" w-full border-b border-neutral-500 bg-neutral-700 p-1 rounded-lg">
+                  </div>
 
-                <div class="flex flex-col gap-2 my-1 w-full">
-                    <div class="text-neutral-500">Email Address</div>
-                    <input type="text" placeholder="youremail@email.com" class=" w-full border-b border-neutral-500 bg-neutral-700 p-1 rounded-lg">
-                </div>
+                  <div class="flex flex-col gap-2 my-1 w-full">
+                      <div class="text-neutral-500">Email Address</div>
+                      <input type="email" v-model="email" placeholder="your-email@mail.com" class=" w-full border-b border-neutral-500 bg-neutral-700 p-1 rounded-lg" required>
+                      <span v-if="emailError" class="error">{{ emailError }}</span>
+                  </div>
 
-                <div class="flex flex-col gap-2 my-1 w-full">
-                    <div class="text-neutral-500">Your message</div>
-                    <textarea maxlength="500" type="text" placeholder="Enter text here..." class=" w-full border-b border-neutral-500 bg-neutral-700 p-1 rounded-lg h-[200px] resize-none"></textarea>
-                </div>
-                <p class="text-neutral-500 text-sm">Max 500 characters</p>
+                  <div class="flex flex-col gap-2 my-1 w-full">
+                      <div class="text-neutral-500">Your message</div>
+                      <textarea ref="messageInput" maxlength="500" type="text" placeholder="Enter text here..." class=" w-full border-b border-neutral-500 bg-neutral-700 p-1 rounded-lg h-[200px] resize-none"></textarea>
+                  </div>
+                  <p class="text-neutral-500 text-sm">Max 500 characters</p>
 
-                <button class="w-full p-2 rounded-full mt-2 bg-neutral-700 hover:bg-neutral-500 hover:text-neutral-900">Send</button>
+                  <button type="submit" class="w-full p-2 rounded-full mt-2 bg-neutral-700 hover:bg-neutral-500 hover:text-neutral-900">Send</button>
+                </form>
                 <!-- END INPUTS -->
             </div>
             <!-- TERMINAL -->
@@ -42,6 +45,32 @@
 
 <script>
 export default {
-
-}
+  data() {
+    return {
+      email: '',
+      emailError: '',
+      allowedDomains: ['@gmail.com', '@hotmail.com', '@yahoo.com']
+    };
+  },
+  methods: {
+    validateEmail() {
+      const domain = this.email.substring(this.email.lastIndexOf("@"));
+      if (!this.allowedDomains.includes(domain)) {
+        this.emailError = alert(`Email domain must be one of the following: ${this.allowedDomains.join(', ')}`);
+      } else {
+        this.emailError = '';
+        alert('Email is sent!');
+        this.email = '';
+        this.$refs.nameInput.value = '';
+        this.$refs.messageInput.value = '';
+      }
+    }
+  }
+};
 </script>
+
+<style scoped>
+.error {
+  color: red;
+}
+</style>
