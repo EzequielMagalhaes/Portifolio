@@ -3,18 +3,14 @@
         <h1 class="text-3xl font-bold text-neutral-300 mb-5">My Projects</h1>
         <div class="grid grid-cols-2 gap-5">
             <div class="h-[500px] p-5 rounded-lg bg-neutral-900 bg-center bg-cover bg-no-repeat flex flex-col justify-between items-start">
-                <img src="../assets/project-logo.png" class="h-20 p-3 rounded-xl" alt="project-logo">
-                <h1 class="text-2xl font-bold">Título do projeto</h1>
-                <p class="text-neutral-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien.</p>
-                <p class="text-neutral-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien.</p>
+                <img :src="dataProject.logo" class="h-20 p-3 rounded-xl" alt="project-logo">
+                <h1 class="text-2xl font-bold">{{ dataProject.title }}</h1>
+                <p class="text-neutral-500">{{ dataProject.description }}</p>
+                <p class="text-neutral-500">{{ dataProject.subdescription }}</p>
                 <div class="flex justify-between items-center w-full">
                     <!-- STACK -->
                     <div class="flex gap-2 items-start align-middle stack-container">
-                        <img src="../assets/vuejs-icon.svg" class="h-10 bg-neutral-900 p-2 rounded-lg stack-item" alt="Vue.js">
-                        <img src="../assets/vuetify-icon.svg" class="h-10 bg-neutral-900 p-2 rounded-lg stack-item" alt="Vuetify">
-                        <img src="../assets/javascript-icon.svg" class="h-10 bg-neutral-900 p-2 rounded-lg stack-item" alt="JavaScript">
-                        <img src="../assets/tailwindcss-icon.svg" class="h-10 bg-neutral-900 p-2 rounded-lg stack-item" alt="Tailwind CSS">
-                        <img src="../assets/docker-icon.svg" class="h-12 bg-neutral-900 p-2 rounded-lg stack-item" alt="Docker">
+                        <img v-for="(tech, index) in dataProject.stack" :key="index" :src="getStackIcon(tech)" :class="getStackClass(tech)" class="bg-neutral-900 p-2 rounded-lg stack-item" :alt="tech">
                     </div>
                     <!-- END STACK -->
                     <div class="flex gap-2 items-center text-xl">
@@ -51,18 +47,58 @@
                 </div>
                 <!-- END CAROUSEL -->
             </div>
-            <div class="h-[500px] p-5 rounded-lg bg-[url('/src/assets/to-do-list.png')] bg-center bg-cover bg-no-repeat"></div>
+            <div :style="{ backgroundImage: `url(${dataProject.image})` }" class="h-[500px] p-5 rounded-lg bg-center bg-cover bg-no-repeat"></div>
         </div>
     </div>
 </template>
 
 <script>
 import { computePosition, shift, flip, offset } from "@floating-ui/dom";
+import toDoListImage from '../assets/to-do-list.png';
+import projectLogo from '../assets/project-logo.png';
+import vueIcon from '../assets/vuejs-icon.svg';
+import vuetifyIcon from '../assets/vuetify-icon.svg';
+import javascriptIcon from '../assets/javascript-icon.svg';
+import tailwindIcon from '../assets/tailwindcss-icon.svg';
+import dockerIcon from '../assets/docker-icon.svg';
+
 export default {
-  methods: {
-    redirect() {
-      window.open('https://vue-to-do-list-ochre.vercel.app/', '_blank');
+  data(){
+    return{
+      dataProject:{ //Projeto que vai ser passado via API
+        logo: projectLogo,
+        title: 'To Do List',
+        description: 'A simple to-do list app built with Vue.js and Tailwind CSS.',
+        subdescription: 'This project was built to practice Vue.js and Tailwind CSS. It is a simple to-do list app that allows users to add, edit, and delete tasks. The app is fully responsive and can be viewed on any device.',
+        stack: ['Vue.js','Vuetify', 'Tailwind CSS', 'JavaScript', 'Docker'],
+        image: toDoListImage,
+        site: 'https://vue-to-do-list-ochre.vercel.app/'
+      }
     }
+  },
+  methods: {
+    getStackIcon(tech) {
+      switch (tech) {
+        case 'Vue.js':
+          return vueIcon;
+        case 'Vuetify':
+          return vuetifyIcon;
+        case 'JavaScript':
+          return javascriptIcon;
+        case 'Tailwind CSS':
+          return tailwindIcon;
+        case 'Docker':
+          return dockerIcon;
+        default:
+          return '';
+      }
+    },
+    getStackClass(tech) {
+      return tech === 'Docker' ? 'h-12' : 'h-10';
+    },
+    redirect() {
+      window.open(this.dataProject.site, '_blank');
+    },
   },
   mounted() {
     const stackItems = document.querySelectorAll(".stack-item");
