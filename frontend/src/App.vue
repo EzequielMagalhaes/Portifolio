@@ -22,8 +22,9 @@
     </section>
     <Footer/>
     <transition name="fade">
-      <button v-show="showScrollButton" @click="scrollToTop" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave" class="fixed bottom-5 right-5 bg-neutral-300 p-3 rounded-full hover:bg-black">
-        <img :src="scrollButtonImage" class="h-6 -rotate-45" alt="scroll-to-top">
+      <button v-show="showScrollButton" @click="scrollToTop" @mouseenter="showWhiteArrow('scroll')" @mouseleave="hideWhiteArrow('scroll')" class="fixed bottom-5 right-5 bg-neutral-300 p-3 rounded-full hover:bg-black">
+        <img id="scroll1" :src="scrollButtonImage" class="h-6 -rotate-45" alt="scroll-to-top">
+        <img id="scroll2" src="/src/assets/white-site-arrow.png" class="h-6 -rotate-45 hidden" alt="scroll-to-top">
       </button>
     </transition>
   </div>
@@ -92,11 +93,13 @@ export default {
         this.showScrollButton = rect.top <= window.innerHeight;
       }
     },
-    handleMouseEnter() {
-      this.scrollButtonImage = '/src/assets/white-site-arrow.png';
+    showWhiteArrow(id) {
+      document.getElementById(`${id}1`).style.display = 'none';
+      document.getElementById(`${id}2`).style.display = 'block';
     },
-    handleMouseLeave() {
-      this.scrollButtonImage = '/src/assets/black-site-arrow.png';
+    hideWhiteArrow(id) {
+      document.getElementById(`${id}1`).style.display = 'block';
+      document.getElementById(`${id}2`).style.display = 'none';
     }
   },
   mounted() {
