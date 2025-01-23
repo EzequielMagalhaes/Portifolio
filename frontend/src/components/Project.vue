@@ -15,9 +15,8 @@
                     <!-- END STACK -->
                     <div class="flex gap-2 items-center text-xl">
                         <button @click="redirect" @mouseenter="showWhiteArrow('site')" @mouseleave="hideWhiteArrow('site')" id="goto-site" class="text-black bg-neutral-300 p-2 rounded-full flex items-center gap-2 hover:bg-black hover:text-neutral-300">
-                            <span class="">Go to Site</span>
-                            <img id="site1" src="../assets/black-site-arrow.png" class="h-8" alt="arrow-site">
-                            <img id="site2" src="../assets/white-site-arrow.png" class="h-8 hidden" alt="arrow-site">
+                            <img id="site1" src="../assets/black_open_in_new_.svg" class="h-6" alt="arrow-site">
+                            <img id="site2" src="../assets/white_open_in_new.svg" class="h-6 hidden" alt="arrow-site">
                         </button>
                     </div>
                 </div>
@@ -25,8 +24,8 @@
                 <div class="flex justify-between items-center w-full">
                     <!-- PREV BUTTON -->
                     <button id="prev-image" @mouseenter="showWhiteArrow('left')" @mouseleave="hideWhiteArrow('left')" class="bg-neutral-300 h-10 w-10 cursor-pointer hover:bg-black rounded-full flex items-center justify-center relative">
-                        <img id="left1" class="h-8" src="../assets/black-left-arrow.png" alt="arrow-carousel">
-                        <img id="left2" class="h-8 hidden absolute" src="../assets/white-left-arrow.png" alt="arrow-carousel">
+                        <img id="left1" class="h-8" src="../assets/black_arrow_left.svg" alt="arrow-carousel">
+                        <img id="left2" class="h-8 hidden absolute" src="../assets/white_arrow_left.svg" alt="arrow-carousel">
                     </button>
                     <!-- NEXT BUTTON -->
                     <!-- DOTS -->
@@ -40,14 +39,14 @@
                     <!-- END DOTS -->
                     <!-- NEXT BUTTON -->
                     <button id="next-image" @mouseenter="showWhiteArrow('right')" @mouseleave="hideWhiteArrow('right')" class="bg-neutral-300 h-10 w-10 cursor-pointer hover:bg-black rounded-full flex items-center justify-center relative">
-                        <img id="right1" class="h-8" src="../assets/black-right-arrow.png" alt="arrow-carousel">
-                        <img id="right2" class="h-8 hidden absolute" src="../assets/white-right-arrow.png" alt="arrow-carousel">
+                        <img id="right1" class="h-8" src="../assets/black_arrow_right.svg" alt="arrow-carousel">
+                        <img id="right2" class="h-8 hidden absolute" src="../assets/white_arrow_right.svg" alt="arrow-carousel">
                     </button>
                     <!-- END NEXT BUTTON -->
                 </div>
                 <!-- END CAROUSEL -->
             </div>
-            <div :style="{ backgroundImage: `url(${dataProject.image})` }" class="h-[500px] p-5 rounded-lg bg-center bg-cover bg-no-repeat"></div>
+            <div :style="{ backgroundImage: `url(${dataProject.image})` }" class="h-[500px] p-5 rounded-lg bg-center bg-cover bg-no-repeat object-scale-down"></div>
         </div>
     </div>
 </template>

@@ -7,13 +7,13 @@
             <div class="absolute top-4 left-6 flex gap-2 items-center">
                 <div class="p-1 rounded-full bg-red-400 shadow-lg shadow-red-glow"></div>
                 <div class="p-1 rounded-full bg-yellow-400 shadow-lg shadow-yellow-glow"></div>
-                <div class="p-1 rounded-full bg-green-400 shadow-lg shadow-green-glow"></div>
+                <div class="p-1 rounded-full bg-green-400 shadow-xlg shadow-green-glow"></div>
             </div>
             <!-- DOTS -->
             <!-- TERMINAL -->
             <div class="flex justify-center items-start flex-col rounded-b-2xl bg-neutral-900 h-[580px] w-[800px] p-24">
                 <h1 class="text-3xl font-bold text-neutral-300">Let's talk</h1>
-                <p class="text-neutral-500 text-sm">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius quia enim vero perferendis eos accusantium iure cupiditate blanditiis quisquam sapiente officia nisi alias, veritatis fugiat? Tempora asperiores autem sequi officia.</p>
+                <p class="text-neutral-500 text-sm">Feel free to reach out to me using the form below. Whether you have a question, a project proposal, or just want to say hello, I'll get back to you as soon as possible.</p>
                 <!-- INPUTS -->
                 <form @submit.prevent="validateEmail" class="w-full">
                   <div class="flex flex-col gap-2 my-1 w-full">
@@ -32,8 +32,11 @@
                       <textarea ref="messageInput" maxlength="500" type="text" placeholder="Enter text here..." class=" w-full border-b border-neutral-500 bg-neutral-700 p-1 rounded-lg h-[200px] resize-none"></textarea>
                   </div>
                   <p class="text-neutral-500 text-sm">Max 500 characters</p>
-
-                  <button type="submit" class="w-full p-2 rounded-full mt-2 bg-neutral-700 hover:bg-neutral-500 hover:text-neutral-900">Send</button>
+                  <button type="submit" class="flex justify-center items-center w-full gap-2 p-2 rounded-full mt-2 bg-neutral-700 hover:bg-neutral-500 hover:text-neutral-900" id="black-send" @mouseenter="showBlackSend('send')" @mouseleave="hideBlackSend('send')">
+                    <span class="text-xl">Send</span>
+                    <img id="send1" src="../assets/white-send.svg" class="h-6" alt="">
+                    <img id="send2" src="../assets/black-send.svg" class="h-6 hidden opacity-70" alt="">
+                  </button>
                 </form>
                 <!-- END INPUTS -->
             </div>
@@ -64,6 +67,14 @@ export default {
         this.$refs.nameInput.value = '';
         this.$refs.messageInput.value = '';
       }
+    },
+    showBlackSend(id) {
+      document.getElementById(`${id}1`).style.display = 'none';
+      document.getElementById(`${id}2`).style.display = 'block';
+    },
+    hideBlackSend(id) {
+      document.getElementById(`${id}1`).style.display = 'block';
+      document.getElementById(`${id}2`).style.display = 'none';
     }
   }
 };
