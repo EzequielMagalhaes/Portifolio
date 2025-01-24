@@ -2,7 +2,7 @@
   <div class="p-5 px-20 flex flex-col gap-5">
     <Navbar/>
     <hr class="border-t-2 border-gray-300"/>
-    <section id="home">
+    <section id="header">
       <Header/>
     </section>
     <section id="about">
