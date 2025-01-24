@@ -9,6 +9,9 @@ const messages = {
       projects: 'Projects',
       contact: 'Contact',
     },
+    header:{
+      title: 'Hi I\'m Ezequiel',
+    }
   },
   pt: {
     title: '<Portfólio/>',
@@ -18,6 +21,9 @@ const messages = {
       projects: 'Projetos',
       contact: 'Contato',
     },
+    header:{
+      title: 'Olá eu sou Ezequiel',
+    }
   },
 };
 

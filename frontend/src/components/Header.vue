@@ -1,16 +1,17 @@
 <template>
   <header class="flex flex-col items-center justify-center gap-2 h-[650px] relative font-roboto">
-    <h1 class="text-3xl">Hi I'm Ezequiel</h1>
+    <h1 class="text-3xl"> {{ $t('header.title') }}</h1>
     <div class="flex items-center">
       <span id="typed-text" class="text-5xl text-neutral-300 font-bold">{{ typeValue }}</span>
       <span id="cursor" class="text-4xl text-neutral-300" :class="{ cursor : true, typing : typeStatus}">|</span>
     </div>
-    <!-- IMAGES -->
+    <!-- IMAGES 
     <img src="../assets/Notebook.svg" class="h-[400px]" alt="Notebook.svg">
     <img src="../assets/vuejs-icon.svg" class="h-20 absolute top-10 left-10" alt="tec-icon1.png">
     <img src="../assets/typescript-icon.svg" class="h-20 absolute top-10 right-10 " alt="tec-icon2.png">
     <img src="../assets/docker-icon.svg" class="h-20 absolute bottom-10 left-10" alt="tec-icon3.png">
     <img src="../assets/vitejs-icon.svg" class="h-20 absolute bottom-10 right-10" alt="tec-icon4.png">
+    -->
   </header>
 </template>
 
