@@ -1,12 +1,12 @@
 <template>
     <div class="flex flex-col gap-5 py-10">
-        <h1 class="text-3xl font-bold text-neutral-300 mb-5">My Projects</h1>
+        <h1 class="text-5xl font-bold text-neutral-300 mb-5">My Projects</h1>
         <div class="grid grid-cols-6 gap-5">
             <div class="col-span-2 h-[500px] p-5 rounded-lg bg-neutral-900 bg-center bg-cover bg-no-repeat flex flex-col justify-between items-start">
                 <img :src="currentProject.logo" class="h-20 p-3 rounded-xl" alt="project-logo">
-                <h1 class="text-2xl font-bold">{{ currentProject.title }}</h1>
-                <p class="text-neutral-500">{{ currentProject.description }}</p>
-                <p class="text-neutral-500">{{ currentProject.subdescription }}</p>
+                <h1 class="text-3xl font-bold">{{ currentProject.title }}</h1>
+                <p class="text-lg text-neutral-500">{{ currentProject.description }}</p>
+                <p class="text-lg text-neutral-500">{{ currentProject.subdescription }}</p>
                 <div class="flex justify-between items-center w-full">
                     <!-- STACK -->
                     <div class="flex gap-2 items-start align-middle stack-container">
@@ -123,7 +123,7 @@ export default {
       }
     },
     getStackClass(tech) {
-      return tech === 'Docker' || tech === 'Chakra-ui' ? 'h-12' : 'h-10';
+      return tech === 'Docker' || tech === 'Chakra-ui' ? 'h-10 scale-[1.2]' : 'h-10';
     },
     redirect() {
       window.open(this.currentProject.site, '_blank');

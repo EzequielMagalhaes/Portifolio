@@ -1,6 +1,6 @@
 <template>
 <div class="py-10 flex flex-col gap-5">
-    <h1 class="text-3xl font-bold text-neutral-300">My Work Experience</h1>
+    <h1 class="text-5xl font-bold text-neutral-300">My Work Experience</h1>
     <div class="flex gap-5">
         <div class=" flex gap-5 h-[850px] rounded-lg p-3 bg-neutral-900">
             <!-- Experience Icons -->

@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col gap-5">
-    <h1 class="text-3xl font-bold text-neutral-300">Contact me</h1>
+    <h1 class="text-5xl font-bold text-neutral-300">Contact me</h1>
     <div class="flex justify-center items-center">
         <div class="relative flex justify-center items-end rounded-3xl bg-neutral-700 h-[620px] w-[800px]">
             <!-- DOTS -->
@@ -32,10 +32,10 @@
                       <textarea ref="messageInput" maxlength="500" type="text" placeholder="Enter text here..." class=" w-full border-b border-neutral-500 bg-neutral-700 p-1 rounded-lg h-[200px] resize-none"></textarea>
                   </div>
                   <p class="text-neutral-500 text-sm">Max 500 characters</p>
-                  <button type="submit" class="flex justify-center items-center w-full gap-2 p-2 rounded-full mt-2 bg-neutral-700 hover:bg-neutral-500 hover:text-neutral-900" id="black-send" @mouseenter="showBlackSend('send')" @mouseleave="hideBlackSend('send')">
+                  <button type="submit" class="flex justify-center items-center w-full gap-1 p-2 rounded-full mt-2 bg-neutral-700 hover:bg-neutral-500 hover:text-neutral-900" id="black-send" @mouseenter="showBlackSend('send')" @mouseleave="hideBlackSend('send')">
+                    <img id="send1" src="../assets/white-send.svg" class="h-7" alt="">
+                    <img id="send2" src="../assets/black-send.svg" class="h-7 hidden opacity-70" alt="">
                     <span class="text-xl">Send</span>
-                    <img id="send1" src="../assets/white-send.svg" class="h-6" alt="">
-                    <img id="send2" src="../assets/black-send.svg" class="h-6 hidden opacity-70" alt="">
                   </button>
                 </form>
                 <!-- END INPUTS -->
