@@ -1,16 +1,16 @@
 <template>
     <div class="flex flex-col gap-5 py-10">
         <h1 class="text-3xl font-bold text-neutral-300 mb-5">My Projects</h1>
-        <div class="grid grid-cols-2 gap-5">
-            <div class="h-[500px] p-5 rounded-lg bg-neutral-900 bg-center bg-cover bg-no-repeat flex flex-col justify-between items-start">
-                <img :src="dataProject.logo" class="h-20 p-3 rounded-xl" alt="project-logo">
-                <h1 class="text-2xl font-bold">{{ dataProject.title }}</h1>
-                <p class="text-neutral-500">{{ dataProject.description }}</p>
-                <p class="text-neutral-500">{{ dataProject.subdescription }}</p>
+        <div class="grid grid-cols-6 gap-5">
+            <div class="col-span-2 h-[500px] p-5 rounded-lg bg-neutral-900 bg-center bg-cover bg-no-repeat flex flex-col justify-between items-start">
+                <img :src="currentProject.logo" class="h-20 p-3 rounded-xl" alt="project-logo">
+                <h1 class="text-2xl font-bold">{{ currentProject.title }}</h1>
+                <p class="text-neutral-500">{{ currentProject.description }}</p>
+                <p class="text-neutral-500">{{ currentProject.subdescription }}</p>
                 <div class="flex justify-between items-center w-full">
                     <!-- STACK -->
                     <div class="flex gap-2 items-start align-middle stack-container">
-                        <img v-for="(tech, index) in dataProject.stack" :key="index" :src="getStackIcon(tech)" :class="getStackClass(tech)" class="bg-neutral-900 p-2 rounded-lg stack-item" :alt="tech">
+                        <img v-for="(tech, index) in currentProject.stack" :key="index" :src="getStackIcon(tech)" :class="getStackClass(tech)" class="bg-neutral-900 p-2 rounded-lg stack-item filter grayscale hover:filter-none" :alt="tech">
                     </div>
                     <!-- END STACK -->
                     <div class="flex gap-2 items-center text-xl">
@@ -23,22 +23,18 @@
                 <!-- CAROUSEL -->
                 <div class="flex justify-between items-center w-full">
                     <!-- PREV BUTTON -->
-                    <button id="prev-image" @mouseenter="showWhiteArrow('left')" @mouseleave="hideWhiteArrow('left')" class="bg-neutral-300 h-10 w-10 cursor-pointer hover:bg-black rounded-full flex items-center justify-center relative">
+                    <button id="prev-image" @click="prevProject" @mouseenter="showWhiteArrow('left')" @mouseleave="hideWhiteArrow('left')" class="bg-neutral-300 h-10 w-10 cursor-pointer hover:bg-black rounded-full flex items-center justify-center relative">
                         <img id="left1" class="h-8" src="../assets/black_arrow_left.svg" alt="arrow-carousel">
                         <img id="left2" class="h-8 hidden absolute" src="../assets/white_arrow_left.svg" alt="arrow-carousel">
                     </button>
                     <!-- NEXT BUTTON -->
                     <!-- DOTS -->
                     <div class="flex gap-2 items-center">
-                        <div class="p-1 rounded-full bg-neutral-300 cursor-pointer"></div>
-                        <div class="p-1 rounded-full bg-neutral-800 cursor-pointer"></div>
-                        <div class="p-1 rounded-full bg-neutral-800 cursor-pointer"></div>
-                        <div class="p-1 rounded-full bg-neutral-800 cursor-pointer"></div>
-                        <div class="p-1 rounded-full bg-neutral-800 cursor-pointer"></div>
+                        <div v-for="(dot, index) in projects" :key="index" class="p-1 rounded-full cursor-pointer" :class="{'bg-neutral-300': index === currentIndex, 'bg-neutral-800': index !== currentIndex}" @click="goToProject(index)"></div>
                     </div>
                     <!-- END DOTS -->
                     <!-- NEXT BUTTON -->
-                    <button id="next-image" @mouseenter="showWhiteArrow('right')" @mouseleave="hideWhiteArrow('right')" class="bg-neutral-300 h-10 w-10 cursor-pointer hover:bg-black rounded-full flex items-center justify-center relative">
+                    <button id="next-image" @click="nextProject" @mouseenter="showWhiteArrow('right')" @mouseleave="hideWhiteArrow('right')" class="bg-neutral-300 h-10 w-10 cursor-pointer hover:bg-black rounded-full flex items-center justify-center relative">
                         <img id="right1" class="h-8" src="../assets/black_arrow_right.svg" alt="arrow-carousel">
                         <img id="right2" class="h-8 hidden absolute" src="../assets/white_arrow_right.svg" alt="arrow-carousel">
                     </button>
@@ -46,7 +42,10 @@
                 </div>
                 <!-- END CAROUSEL -->
             </div>
-            <div :style="{ backgroundImage: `url(${dataProject.image})` }" class="h-[500px] p-5 rounded-lg bg-center bg-cover bg-no-repeat object-scale-down"></div>
+            <div 
+              :style="{ backgroundImage: `url(${currentProject.image})` }" 
+              class="col-span-4 h-[500px] p-5 rounded-lg bg-center bg-cover bg-no-repeat object-scale-down">
+            </div>
         </div>
     </div>
 </template>
@@ -54,49 +53,80 @@
 <script>
 import { computePosition, shift, flip, offset } from "@floating-ui/dom";
 import toDoListImage from '../assets/to-do-list.png';
+import kanbanBoardImage from '../assets/kanban-board.png';
 import projectLogo from '../assets/project-logo.png';
+import viteIcon from '../assets/vitejs-icon.svg';
 import vueIcon from '../assets/vuejs-icon.svg';
+import reactIcon from '../assets/react-icon.svg';
 import vuetifyIcon from '../assets/vuetify-icon.svg';
 import javascriptIcon from '../assets/javascript-icon.svg';
+import typeScriptIcon from '../assets/typescript-icon.svg';
 import tailwindIcon from '../assets/tailwindcss-icon.svg';
 import dockerIcon from '../assets/docker-icon.svg';
+import chakraIcon from '../assets/chakra-icon.svg';
 
 export default {
   data(){
     return{
-      dataProject:{ //Projeto que vai ser passado via API
-        logo: projectLogo,
-        title: 'To Do List',
-        description: 'A simple to-do list app built with Vue.js and Tailwind CSS.',
-        subdescription: 'This project was built to practice Vue.js and Tailwind CSS. It is a simple to-do list app that allows users to add, edit, and delete tasks. The app is fully responsive and can be viewed on any device.',
-        stack: ['Vue.js','Vuetify', 'Tailwind CSS', 'JavaScript', 'Docker'],
-        image: toDoListImage,
-        site: 'https://vue-to-do-list-ochre.vercel.app/'
-      }
+      projects: [
+        {
+          logo: projectLogo,
+          title: 'To Do List',
+          description: 'A simple to-do list app built with Vue.js and Tailwind CSS.',
+          subdescription: 'This project was built to practice Vue.js and Tailwind CSS. It is a simple to-do list app that allows users to add, edit, and delete tasks. The app is fully responsive and can be viewed on any device.',
+          stack: ['Vue.js','Vuetify', 'Tailwind CSS', 'JavaScript', 'Docker'],
+          image: toDoListImage,
+          site: 'https://vue-to-do-list-ochre.vercel.app/'
+        },
+        {
+          logo: projectLogo,
+          title: 'Kanban Board',
+          description: 'A simple kanban board app built with react.js and chakra-ui.',
+          subdescription: 'This project was built to practice react.js and chakra-ui. It is a simple kanban board app that allows users to add, edit, and delete tasks. The app is fully responsive and can be viewed on any device.',
+          stack: ['React.js','Chakra-ui', 'Typescript', 'Vite'],
+          image: kanbanBoardImage,
+          site: 'https://react-kanban-board-chi.vercel.app'
+        }
+        // Adicione mais projetos aqui
+      ],
+      currentIndex: 0
+    }
+  },
+  computed: {
+    currentProject() {
+      return this.projects[this.currentIndex];
     }
   },
   methods: {
     getStackIcon(tech) {
       switch (tech) {
+        case 'Vite':
+          return viteIcon;
+        case 'React.js':
+          return reactIcon;
         case 'Vue.js':
           return vueIcon;
         case 'Vuetify':
           return vuetifyIcon;
         case 'JavaScript':
           return javascriptIcon;
+        case 'Typescript':
+          return typeScriptIcon;
         case 'Tailwind CSS':
           return tailwindIcon;
         case 'Docker':
           return dockerIcon;
+        case 'Chakra-ui':
+          return chakraIcon;
         default:
           return '';
       }
     },
     getStackClass(tech) {
-      return tech === 'Docker' ? 'h-12' : 'h-10';
+      return tech === 'Docker' || tech === 'Chakra-ui' ? 'h-12' : 'h-10';
     },
     redirect() {
-      window.open(this.dataProject.site, '_blank');
+      window.open(this.currentProject.site, '_blank');
     },
     showWhiteArrow(id) {
       document.getElementById(`${id}1`).style.display = 'none';
@@ -105,14 +135,26 @@ export default {
     hideWhiteArrow(id) {
       document.getElementById(`${id}1`).style.display = 'block';
       document.getElementById(`${id}2`).style.display = 'none';
-    }
-  },
-  mounted() {
+    },
+    prevProject() {
+      this.currentIndex = (this.currentIndex - 1 + this.projects.length) % this.projects.length;
+    },
+    nextProject() {
+      this.currentIndex = (this.currentIndex + 1) % this.projects.length;
+    },
+    goToProject(index) {
+      this.currentIndex = index;
+    },
+    updateTooltips() {
+    // Remova todos os tooltips existentes
+    document.querySelectorAll(".tooltip").forEach((tooltip) => tooltip.remove());
+
     const stackItems = document.querySelectorAll(".stack-item");
 
     stackItems.forEach((item) => {
+      // Criação do tooltip
       let tooltip = document.createElement("div");
-      tooltip.className = "tooltip"; 
+      tooltip.className = "tooltip";
       tooltip.innerText = item.alt;
       tooltip.style.visibility = "hidden";
       tooltip.style.opacity = "0";
@@ -132,7 +174,7 @@ export default {
 
         computePosition(item, tooltip, {
           placement: "top",
-          middleware: [offset(10), flip(), shift()]
+          middleware: [offset(10), flip(), shift()],
         }).then(({ x, y }) => {
           Object.assign(tooltip.style, {
             top: `${y}px`,
@@ -144,7 +186,7 @@ export default {
             fontSize: "12px",
             whiteSpace: "nowrap",
             zIndex: 1000,
-            pointerEvents: "none"
+            pointerEvents: "none",
           });
         });
       };
@@ -154,11 +196,28 @@ export default {
         tooltip.style.opacity = "0";
       };
 
+      // Remova event listeners antigos
+      item.removeEventListener("mouseenter", showTooltip);
+      item.removeEventListener("mousemove", updateTooltipPosition);
+      item.removeEventListener("mouseleave", removeTooltip);
+
+      // Adicione event listeners
       item.addEventListener("mouseenter", showTooltip);
       item.addEventListener("mousemove", updateTooltipPosition);
       item.addEventListener("mouseleave", removeTooltip);
-    });
-  }
+      });
+    }
+  },
+  mounted() {
+    this.updateTooltips();
+  },
+  watch: {
+  currentIndex() {
+    this.$nextTick(() => {
+      this.updateTooltips();
+      });
+    }
+  },
 };
 </script>
 
