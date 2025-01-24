@@ -1,14 +1,27 @@
 <template>
-  <h1>Heading</h1>
+  <div>
+    <h1>Heading</h1>
+    <transition name="fade" mode="out-in">
+      <img :src="currentImg" :key="currentImg" alt="slider-image">
+    </transition>
+    <a class="prev" @click="prev">&#10094;</a>
+    <a class="next" @click="next">&#10095;</a>
+  </div>
 </template>
+
 <script>
+import toDoListImage from '../assets/to-do-list.png';
+import kanbanBoardImage from '../assets/kanban-board.png';
+import rpsImage from '../assets/rock-paper-scissor.png';
+
 export default {
   name: "Slider",
   data() {
     return {
       images: [
-        '/src/assets/to-do-list.png',
-        '/src/assets/kanban-board.png',
+        toDoListImage,
+        kanbanBoardImage,
+        rpsImage,
       ],
       timer: null,
       currentIndex: 0
@@ -22,15 +35,15 @@ export default {
       this.timer = setInterval(this.next, 4000);
     },
     next: function() {
-      this.currentIndex += 1;
+      this.currentIndex = (this.currentIndex + 1) % this.images.length;
     },
     prev: function() {
-      this.currentIndex -= 1;
+      this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
     }
   },
   computed: {
     currentImg: function() {
-      return this.images[Math.abs(this.currentIndex) % this.images.length];
+      return this.images[this.currentIndex];
     }
   }
 };
@@ -43,20 +56,20 @@ export default {
   overflow: hidden;
   visibility: visible;
   position: absolute;
-  width:100%;
+  width: 100%;
   opacity: 1;
 }
 
 .fade-enter,
 .fade-leave-to {
   visibility: hidden;
-  width:100%;
+  width: 100%;
   opacity: 0;
 }
 
 img {
-  height:600px;
-  width:100%
+  height: 600px;
+  width: 100%;
 }
 
 .prev, .next {

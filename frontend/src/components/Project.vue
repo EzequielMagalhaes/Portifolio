@@ -42,10 +42,13 @@
                 </div>
                 <!-- END CAROUSEL -->
             </div>
-            <div 
-              :style="{ backgroundImage: `url(${currentProject.image})` }" 
-              class="col-span-4 h-[500px] p-5 rounded-lg bg-center bg-cover bg-no-repeat object-scale-down">
-            </div>
+            <transition :name="transitionName" mode="out-in">
+                <div 
+                  :key="currentProject.image"
+                  :style="{ backgroundImage: `url(${currentProject.image})` }" 
+                  class="col-span-4 h-[500px] p-5 rounded-lg bg-center bg-cover bg-no-repeat object-scale-down relative">
+                </div>
+            </transition>
         </div>
     </div>
 </template>
@@ -54,8 +57,14 @@
 import { computePosition, shift, flip, offset } from "@floating-ui/dom";
 import toDoListImage from '../assets/to-do-list.png';
 import kanbanBoardImage from '../assets/kanban-board.png';
-import projectLogo from '../assets/project-logo.png';
+import rpsImage from '../assets/rock-paper-scissor.png';
+import todoLogo from '../assets/project-logo.png';
+import kanbanLogo from '../assets/kanban-logo.png';
+import rpsLogo from '../assets/rock-paper-scissor-logo.png';
+import htmlIcon from '../assets/html-icon.svg';
+import cssIcon from '../assets/css-icon.svg';
 import viteIcon from '../assets/vitejs-icon.svg';
+import nodeJsIcon from '../assets/nodejs-icon.svg';
 import vueIcon from '../assets/vuejs-icon.svg';
 import reactIcon from '../assets/react-icon.svg';
 import vuetifyIcon from '../assets/vuetify-icon.svg';
@@ -70,7 +79,16 @@ export default {
     return{
       projects: [
         {
-          logo: projectLogo,
+          logo: rpsLogo,
+          title: 'Rock Paper Scissors',
+          description: 'A rock paper scissors game built whit vanilla javascript.',
+          subdescription: 'This project was built to practice vanilla javascript. It is a simple rock paper scissors game that allows users to play against the computer. The app is fully responsive and can be viewed on any device.',
+          stack: ['HTML', 'CSS', 'JavaScript'],
+          image: rpsImage,
+          site: 'https://rock-paper-scissors-umber-theta.vercel.app'
+        },
+        {
+          logo: todoLogo,
           title: 'To Do List',
           description: 'A simple to-do list app built with Vue.js and Tailwind CSS.',
           subdescription: 'This project was built to practice Vue.js and Tailwind CSS. It is a simple to-do list app that allows users to add, edit, and delete tasks. The app is fully responsive and can be viewed on any device.',
@@ -79,17 +97,19 @@ export default {
           site: 'https://vue-to-do-list-ochre.vercel.app/'
         },
         {
-          logo: projectLogo,
+          logo: kanbanLogo,
           title: 'Kanban Board',
           description: 'A simple kanban board app built with react.js and chakra-ui.',
           subdescription: 'This project was built to practice react.js and chakra-ui. It is a simple kanban board app that allows users to add, edit, and delete tasks. The app is fully responsive and can be viewed on any device.',
-          stack: ['React.js','Chakra-ui', 'Typescript', 'Vite'],
+          stack: ['React.js', 'Typescript', 'Node.js', 'Chakra-ui', 'Vite'],
           image: kanbanBoardImage,
           site: 'https://react-kanban-board-chi.vercel.app'
-        }
+        },
         // Adicione mais projetos aqui
       ],
-      currentIndex: 0
+      currentIndex: 0,
+      timer: null,
+      transitionName: 'slide-fade-left'
     }
   },
   computed: {
@@ -100,8 +120,14 @@ export default {
   methods: {
     getStackIcon(tech) {
       switch (tech) {
+        case 'HTML':
+          return htmlIcon;
+        case 'CSS':
+          return cssIcon;
         case 'Vite':
           return viteIcon;
+        case 'Node.js':
+          return nodeJsIcon;
         case 'React.js':
           return reactIcon;
         case 'Vue.js':
@@ -137,13 +163,18 @@ export default {
       document.getElementById(`${id}2`).style.display = 'none';
     },
     prevProject() {
+      this.transitionName = 'slide-fade-right';
       this.currentIndex = (this.currentIndex - 1 + this.projects.length) % this.projects.length;
+      this.resetTimer();
     },
     nextProject() {
+      this.transitionName = 'slide-fade-left';
       this.currentIndex = (this.currentIndex + 1) % this.projects.length;
+      this.resetTimer();
     },
     goToProject(index) {
       this.currentIndex = index;
+      this.resetTimer();
     },
     updateTooltips() {
     // Remova todos os tooltips existentes
@@ -206,10 +237,25 @@ export default {
       item.addEventListener("mousemove", updateTooltipPosition);
       item.addEventListener("mouseleave", removeTooltip);
       });
+    },
+    startTimer() {
+      this.timer = setInterval(this.nextProject, 10000);
+    },
+    stopTimer() {
+      clearInterval(this.timer);
+      this.timer = null;
+    },
+    resetTimer() {
+      this.stopTimer();
+      this.startTimer();
     }
   },
   mounted() {
     this.updateTooltips();
+    this.startTimer();
+  },
+  beforeDestroy() {
+    this.stopTimer();
   },
   watch: {
   currentIndex() {
@@ -255,5 +301,27 @@ button:hover #site2,
 button:hover #left2,
 button:hover #right2 {
   display: block;
+}
+
+.col-span-4 {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.slide-fade-left-enter-active, .slide-fade-left-leave-active {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.slide-fade-left-enter, .slide-fade-left-leave-to {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.slide-fade-right-enter-active, .slide-fade-right-leave-active {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.slide-fade-right-enter, .slide-fade-right-leave-to {
+  transform: translateX(-100%);
+  opacity: 0;
 }
 </style>
