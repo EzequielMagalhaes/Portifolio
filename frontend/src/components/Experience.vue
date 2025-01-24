@@ -4,12 +4,12 @@
     <div class="flex gap-5">
         <div class=" flex gap-5 h-[850px] rounded-lg p-3 bg-neutral-900">
             <!-- Experience Icons -->
-            <div class="flex flex-col w-1/5 gap-12 py-8 justify-around items-center">
-                <img :src="experiences[0].logo" class="h-28 bg-neutral-900 rounded-xl" alt="">
+            <div class="flex flex-col w-1/5 gap-5 py-8 justify-around items-center">
+                <img :src="experiences[0].logo" class="h-32 bg-neutral-900 rounded-xl" alt="">
                 <div class="p-[1px] h-36 bg-neutral-800"></div>
-                <img :src="experiences[1].logo" class="h-28 bg-neutral-900 rounded-xl" alt="">
+                <img :src="experiences[1].logo" class="h-32 bg-neutral-900 rounded-xl" alt="">
                 <div class="p-[1px] h-36 bg-neutral-800"></div>
-                <img :src="experiences[2].logo" class="h-28 w-28 bg-neutral-900 rounded-xl" alt="">
+                <img :src="experiences[2].logo" class="h-32 w-32 bg-neutral-900 rounded-xl" alt="">
             </div>
             <!-- End Experience Icons -->
             <!-- Experience Text -->
