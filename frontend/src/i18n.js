@@ -4,9 +4,10 @@ const messages = {
   en: {
     title: '<Portfolio/>',
     navbar: {
-      home: 'Home',
+      //home: 'Home',
       about: 'About',
       projects: 'Projects',
+      experience: 'Experience',
       contact: 'Contact',
     },
     header:{
@@ -16,9 +17,10 @@ const messages = {
   pt: {
     title: '<Portfólio/>',
     navbar: {
-      home: 'Início',
+      //home: 'Início',
       about: 'Sobre',
       projects: 'Projetos',
+      experience: 'Experiência',
       contact: 'Contato',
     },
     header:{
