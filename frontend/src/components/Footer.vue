@@ -1,5 +1,5 @@
 <template>
-  <footer class="flex justify-between items-center w-full py-3">
+  <footer class="flex justify-between items-center w-full">
     <p class="text-neutral-500">Terms & Conditions | Privacy Policies</p>
     <div class="flex gap-2">
         <button @click="redirectLinkedin" id="instagram-link">

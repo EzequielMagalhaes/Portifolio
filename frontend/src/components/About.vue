@@ -35,8 +35,9 @@
                             <h1 class="text-3xl font-bold text-grey-300 mb-5">Tech Stack</h1>
                         </div>
                         <p class="text-neutral-500 text-lg">
-                            Over the course of my journey,  I've gained hands-on experience with a variety of technologies, primarily through personal and academic projects.
-                            This portfolio, for instance, was built using tools such as Vue.js, JavaScript, Spring Boot, Tailwind CSS and Docker.
+                            Over the course of my journey, I've gained hands-on experience with various technologies through personal and academic projects.
+                            This portfolio, for instance, was built using tools such as Vue.js, JavaScript, Spring Boot, Tailwind CSS, and Docker.
+                            Additionally, I have applied my knowledge of CI/CD pipelines and authentication mechanisms with Spring in recent projects.
                         </p>
                     </div>
                     <!-- CARD 3 -->
