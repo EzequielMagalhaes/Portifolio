@@ -21,12 +21,16 @@ export default {
     return {
       typeValue: '',
       typeStatus: false,
-      typeArray: ['SOFTWARE DEVELOPER', 'WEB DEVELOPER'],
+      typeArrayIndex: 0,
+      charIndex: 0,
       typingSpeed: 70,
       erasingSpeed: 70,
       newTextDelay: 3000,
-      typeArrayIndex: 0,
-      charIndex: 0
+    }
+  },
+  computed: {
+    typeArray() {
+      return [this.$t('header.typeArray.0'), this.$t('header.typeArray.1')];
     }
   },
   mounted(){

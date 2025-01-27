@@ -20,7 +20,7 @@
 export default {
     methods: {
         redirectLinkedin() {
-            window.open('https://www.linkedin.com/in/zekiell/','_blank');
+            window.open('https://www.linkedin.com/in/ezequiel-magalhaes-dev/','_blank');
         },
         redirectGithub() {
             window.open('https://github.com/EzequielMagalhaes','_blank');

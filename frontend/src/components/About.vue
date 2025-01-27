@@ -1,71 +1,46 @@
 <template>
     <div class="font-roboto">
-        <h1 class="text-5xl font-bold text-grey-300 mb-5">About</h1>
+        <h1 class="text-5xl font-bold text-grey-300 mb-5">{{ $t('about.title') }}</h1>
         <!-- GRID -->
         <div class="flex gap-5">
+            <!-- Coluna Esquerda -->
             <div class="w-4/6 flex flex-col gap-5">
                 <div class="grid grid-cols-2 gap-5">
-                    <!-- CARD 1 -->
-                    <div class="rounded-xl p-5 bg-neutral-900">
-                        <div class="space-y-3"> <!-- Talvez dê erro, ficar atento-->
-                            <img src="../assets/Foto de perfil.png" class="h-72 mx-auto rounded-3xl" alt="foto-de-perfil.jpg">
-                            <h1 class="text-3xl font-bold text-grey-300 mb-5">Hi I'm Ezequiel</h1>
-                        </div>
-                        <p class="text-neutral-500 text-lg">Hi, I’m Ezequiel, a tech enthusiast passionate about solving problems and learning continuously.
-                            Welcome to my portfolio, where I share my skills, experiences, and growth journey!
-                        </p>
-                    </div>
-                    <!-- CARD 1 -->
-                    <!-- CARD 2 -->
-                    <div class="rounded-xl p-5 bg-neutral-900">
+                    <!-- CARD 1 e CARD 2 -->
+                    <div v-for="(card, index) in cards.slice(0, 2)" :key="index" class="rounded-xl p-5 bg-neutral-900">
                         <div class="space-y-3">
-                            <img src="../assets/Typing.svg" class="h-72 mx-auto rounded-3xl scale-[1.05]" alt="foto-2.jpg">
-                            <h1 class="text-3xl font-bold text-grey-300 mb-5">Professional Experience</h1>
+                            <img :src="card.cardImg" class="h-72 mx-auto rounded-3xl" :alt="`Card image ${index + 1}`">
+                            <h1 class="text-3xl font-bold text-grey-300 mb-5">{{ $t(card.title) }}</h1>
                         </div>
                         <p class="text-neutral-500 text-lg">
-                            I’ve gained valuable experience working on projects in technical support, system maintenance, and software development, preparing me to tackle diverse challenges in the tech industry.
+                            {{ $t(card.cardDescription) }}
                         </p>
                     </div>
-                    <!-- CARD 2 -->
                 </div>
-                    <!-- CARD 3 -->
-                    <div class="rounded-xl p-5 bg-neutral-900">
-                        <div class="space-y-3">
-                            <img src="../assets/Stack.svg" class="h-72 mx-auto rounded-3xl scale-[1.25]" alt="foto-3.jpg">
-                            <h1 class="text-3xl font-bold text-grey-300 mb-5">Tech Stack</h1>
-                        </div>
-                        <p class="text-neutral-500 text-lg">
-                            Over the course of my journey, I've gained hands-on experience with various technologies through personal and academic projects.
-                            This portfolio, for instance, was built using tools such as Vue.js, JavaScript, Spring Boot, Tailwind CSS, and Docker.
-                            Additionally, I have applied my knowledge of CI/CD pipelines and authentication mechanisms with Spring in recent projects.
-                        </p>
+                <!-- CARD 3 -->
+                <div class="rounded-xl p-5 bg-neutral-900">
+                    <div class="space-y-3">
+                        <img :src="cards[2].cardImg" class="h-72 mx-auto rounded-3xl scale-[1.25]" alt="Card image 3">
+                        <h1 class="text-3xl font-bold text-grey-300 mb-5">{{ $t(cards[2].title) }}</h1>
                     </div>
-                    <!-- CARD 3 -->
+                    <p class="text-neutral-500 text-lg">
+                        {{ $t(cards[2].cardDescription) }}
+                    </p>
+                </div>
             </div>
-                <div class="w-2/6 flex flex-col gap-5">
-                    <!-- CARD 4 -->
-                    <div class="rounded-xl p-5 bg-neutral-900">
-                        <div class="space-y-3">
-                            <img src="../assets/Studying.svg" class="h-72 mx-auto rounded-3xl scale-[1.2]" alt="foto-4.jpg">
-                            <h1 class="text-3xl font-bold text-grey-300 mb-5">Education</h1>
-                        </div>
-                        <p class="text-neutral-500 text-lg">
-                           I am currently studying Computer Science, building a solid foundation in programming and systems design. In addition, I completed several certified courses, which are focused on the programming area.
-                        </p>
+            <!-- Coluna Direita -->
+            <div class="w-2/6 flex flex-col gap-5">
+                <!--CARD 4 e CARD 5 -->
+                <div v-for="(card, index) in cards.slice(3)" :key="index + 3" class="rounded-xl p-5 bg-neutral-900">
+                    <div class="space-y-3">
+                        <img :src="card.cardImg" class="h-72 mx-auto rounded-3xl scale-[1.1]" :alt="`Card image ${index + 4}`">
+                        <h1 class="text-3xl font-bold text-grey-300 mb-5">{{ $t(card.title) }}</h1>
                     </div>
-                    <!-- CARD 4 -->
-                    <!-- CARD 5 -->
-                    <div class="rounded-xl p-5 bg-neutral-900">
-                        <div class="space-y-3">
-                            <img src="../assets/Hobbies.svg" class="h-72 mx-auto rounded-3xl scale-[1.1]" alt="foto-5.jpg">
-                            <h1 class="text-3xl font-bold text-grey-300 mb-5">Hobbies</h1>
-                        </div>
-                        <p class="text-neutral-500 text-lg">
-                            Beyond coding, I enjoy exploring new technologies, gaming, reading, and staying active through fitness routines, keeping a balance between work and life.
-                        </p>
-                    </div>
-                    <!-- CARD 5 -->
+                    <p class="text-neutral-500 text-lg">
+                        {{ $t(card.cardDescription) }}
+                    </p>
                 </div>
+            </div>
         </div>
         <!-- GRID -->
 
@@ -73,7 +48,54 @@
 </template>
 
 <script>
+import imgCard1 from '../assets/Foto de perfil.png'
+import imgCard2 from '../assets/Typing.svg'
+import imgCard3 from '../assets/Stack.svg'
+import imgCard4 from '../assets/Studying.svg'
+import imgCard5 from '../assets/Hobbies.svg'
+
+const imgCard = [imgCard1, imgCard2, imgCard3, imgCard4, imgCard5];
+
 export default {
-    
-}
+    data(){
+        return{
+            cards:[{
+                // CARD 1
+                title: 'about.card1.title',
+                cardDescription: 'about.card1.description',
+                cardImg: imgCard[0],
+            },
+            {
+                // CARD 2
+                title: 'about.card2.title',
+                cardDescription: 'about.card2.description',
+                cardImg: imgCard[1],
+            },
+            {
+                // CARD 3
+                title: 'about.card3.title',
+                cardDescription: 'about.card3.description',
+                cardImg: imgCard[2],
+            },
+            {
+                // CARD 4
+                title: 'about.card4.title',
+                cardDescription: 'about.card4.description',
+                cardImg: imgCard[3],
+            },
+            {
+                // CARD 5
+                title: 'about.card5.title',
+                cardDescription: 'about.card5.description',
+                cardImg: imgCard[4],
+            }],
+            currentIndex: 0,
+        }
+    },
+    computed: {
+        currentCard() {
+            return this.cards[this.currentIndex];
+        }
+    }
+};
 </script>

@@ -1,16 +1,16 @@
 <template>
     <div class="flex flex-col gap-5 py-5">
-        <h1 class="text-5xl font-bold text-neutral-300 mb-5">My Projects</h1>
-        <div class="grid grid-cols-6 gap-5">
-            <div class="col-span-2 h-[530px] p-5 rounded-lg bg-neutral-900 bg-center bg-cover bg-no-repeat flex flex-col justify-between items-start">
+        <h1 class="text-5xl font-bold text-neutral-300 mb-5">{{ $t('projects.title') }}</h1>
+        <div class="grid grid-cols-6 gap-3">
+            <div class="col-span-2 h-[530px] p-3 rounded-lg bg-neutral-900 bg-center bg-cover bg-no-repeat flex flex-col justify-between items-start">
                 <img :src="currentProject.logo" :class="getCurrentProjectClass(currentProject.logo)" alt="project-logo">
-                <h1 class="text-3xl font-bold">{{ currentProject.title }}</h1>
-                <p class="text-lg text-neutral-500">{{ currentProject.description }}</p>
-                <p class="text-lg text-neutral-500">{{ currentProject.subdescription }}</p>
+                <h1 class="text-3xl font-bold">{{ $t(currentProject.title) }}</h1>
+                <p class="text-lg text-neutral-500">{{ $t(currentProject.description) }}</p>
+                <p class="text-lg text-neutral-500">{{ $t(currentProject.subdescription) }}</p>
                 <div class="flex justify-between items-center w-full">
                     <!-- STACK -->
-                    <div class="flex gap-2 items-start align-middle stack-container">
-                        <img v-for="(tech, index) in currentProject.stack" :key="index" :src="getStackIcon(tech)" :class="getStackClass(tech)" class="bg-neutral-900 p-2 rounded-lg stack-item filter grayscale hover:filter-none" :alt="tech">
+                    <div class="flex items-start align-middle stack-container">
+                        <img v-for="(tech, index) in currentProject.stack" :key="index" :src="getStackIcon(tech)" :class="getStackClass(tech)" class="bg-neutral-900 p-1 rounded-lg stack-item filter grayscale hover:filter-none" :alt="tech">
                     </div>
                     <!-- END STACK -->
                     <div class="flex gap-2 items-center text-xl">
@@ -42,38 +42,36 @@
                 </div>
                 <!-- END CAROUSEL -->
             </div>
-            <transition :name="transitionName" mode="out-in">
-                <iframe
-                  :key="currentProject.site"
-                  :src="currentProject.site" 
-                  class="col-span-4 h-[624px] w-[930px] rounded-lg bg-center bg-cover bg-no-repeat object-scale-down relative bg-white"
-                  style="transform: scale(0.85); transform-origin: 0 0;">
-                </iframe>
-            </transition>
+            <iframe
+              :key="currentProject.site"
+              :src="currentProject.site" 
+              class="col-span-4 h-[624px] w-[950px] rounded-lg bg-center bg-cover bg-no-repeat object-scale-down relative bg-white"
+              style="transform: scale(0.85); transform-origin: 0 0;">
+            </iframe>
         </div>
     </div>
 </template>
 
 <script>
 import { computePosition, shift, flip, offset } from "@floating-ui/dom";
-import toDoListImage from '../assets/to-do-list.png';
-import kanbanBoardImage from '../assets/kanban-board.png';
-import rpsImage from '../assets/rock-paper-scissor.png';
 import todoLogo from '../assets/project-logo.png';
 import kanbanLogo from '../assets/kanban-logo.png';
 import rpsLogo from '../assets/rock-paper-scissor-logo.png';
-import htmlIcon from '../assets/html-icon.svg';
-import cssIcon from '../assets/css-icon.svg';
-import viteIcon from '../assets/vitejs-icon.svg';
-import nodeJsIcon from '../assets/nodejs-icon.svg';
-import vueIcon from '../assets/vuejs-icon.svg';
-import reactIcon from '../assets/react-icon.svg';
-import vuetifyIcon from '../assets/vuetify-icon.svg';
-import javascriptIcon from '../assets/javascript-icon.svg';
-import typeScriptIcon from '../assets/typescript-icon.svg';
-import tailwindIcon from '../assets/tailwindcss-icon.svg';
-import dockerIcon from '../assets/docker-icon.svg';
-import chakraIcon from '../assets/chakra-icon.svg';
+import htmlIcon from '../assets/stack-icons/html-icon.svg';
+import cssIcon from '../assets/stack-icons/css-icon.svg';
+import viteIcon from '../assets/stack-icons/vitejs-icon.svg';
+import nodeJsIcon from '../assets/stack-icons/nodejs-icon.svg';
+import vueIcon from '../assets/stack-icons/vuejs-icon.svg';
+import reactIcon from '../assets/stack-icons/react-icon.svg';
+import vuetifyIcon from '../assets/stack-icons/vuetify-icon.svg';
+import javascriptIcon from '../assets/stack-icons/javascript-icon.svg';
+import typeScriptIcon from '../assets/stack-icons/typescript-icon.svg';
+import tailwindIcon from '../assets/stack-icons/tailwindcss-icon.svg';
+import dockerIcon from '../assets/stack-icons/docker-icon.svg';
+import chakraIcon from '../assets/stack-icons/chakra-icon.svg';
+import babelIcon from '../assets/stack-icons/babel-icon.svg';
+import jestIcon from '../assets/stack-icons/jest-icon.svg';
+import gitIcon from '../assets/stack-icons/git-icon.svg';
 
 export default {
   data(){
@@ -81,36 +79,33 @@ export default {
       projects: [
         {
           logo: rpsLogo,
-          title: 'Rock Paper Scissors',
-          description: 'A rock paper scissors game built whit vanilla javascript.',
-          subdescription: 'This project was built to practice vanilla javascript. It is a simple rock paper scissors game that allows users to play against the computer. The app is fully responsive and can be viewed on any device.',
-          stack: ['HTML', 'CSS', 'JavaScript'],
-          image: rpsImage,
+          title: 'projects.project1.title',
+          description: 'projects.project1.description',
+          subdescription: 'projects.project1.subdescription',
+          stack: ['HTML', 'CSS', 'JavaScript', 'Git'],
           site: 'https://rock-paper-scissors-umber-theta.vercel.app'
         },
         {
-          logo: todoLogo,
-          title: 'To Do List',
-          description: 'A simple to-do list app built with Vue.js and Tailwind CSS.',
-          subdescription: 'This project was built to practice Vue.js and Tailwind CSS. It is a simple to-do list app that allows users to add, edit, and delete tasks. The app is fully responsive and can be viewed on any device.',
-          stack: ['Vue.js','Vuetify', 'Tailwind CSS', 'JavaScript', 'Docker'],
-          image: toDoListImage,
-          site: 'https://vue-to-do-list-ochre.vercel.app/'
-        },
-        {
           logo: kanbanLogo,
-          title: 'Kanban Board',
-          description: 'A simple kanban board app built with react.js and chakra-ui.',
-          subdescription: 'This project was built to practice react.js and chakra-ui. It is a simple kanban board app that allows users to add, edit, and delete tasks. The app is fully responsive and can be viewed on any device.',
-          stack: ['React.js', 'Typescript', 'Node.js', 'Chakra-ui', 'Vite'],
-          image: kanbanBoardImage,
+          title: 'projects.project2.title',
+          description: 'projects.project2.description',
+          subdescription: 'projects.project2.subdescription',
+          stack: ['React.js', 'Typescript', 'Node.js', 'Chakra-ui', 'Vite', 'Git'],
           site: 'https://react-kanban-board-chi.vercel.app'
         },
+        {
+          logo: todoLogo,
+          title: 'projects.project3.title',
+          description: 'projects.project3.description',
+          subdescription: 'projects.project3.subdescription',
+          stack: ['Vue.js','Vuetify', 'Tailwind CSS', 'JavaScript', 'Babel', 'Jest', 'Docker', 'Git'],
+          site: 'https://vue-to-do-list-ochre.vercel.app/'
+        },
+        
         // Adicione mais projetos aqui
       ],
       currentIndex: 0,
       timer: null,
-      transitionName: 'slide-fade-left'
     }
   },
   computed: {
@@ -145,6 +140,12 @@ export default {
           return dockerIcon;
         case 'Chakra-ui':
           return chakraIcon;
+        case 'Babel':
+          return babelIcon;
+        case 'Jest': 
+          return jestIcon;
+        case 'Git':
+          return gitIcon;
         default:
           return '';
       }
@@ -167,12 +168,10 @@ export default {
       document.getElementById(`${id}2`).style.display = 'none';
     },
     prevProject() {
-      this.transitionName = 'slide-fade-right';
       this.currentIndex = (this.currentIndex - 1 + this.projects.length) % this.projects.length;
       this.resetTimer();
     },
     nextProject() {
-      this.transitionName = 'slide-fade-left';
       this.currentIndex = (this.currentIndex + 1) % this.projects.length;
       this.resetTimer();
     },
@@ -305,27 +304,5 @@ button:hover #site2,
 button:hover #left2,
 button:hover #right2 {
   display: block;
-}
-
-.col-span-4 {
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-}
-
-.slide-fade-left-enter-active, .slide-fade-left-leave-active {
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-}
-
-.slide-fade-left-enter, .slide-fade-left-leave-to {
-  transform: translateX(100%);
-  opacity: 0;
-}
-
-.slide-fade-right-enter-active, .slide-fade-right-leave-active {
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-}
-
-.slide-fade-right-enter, .slide-fade-right-leave-to {
-  transform: translateX(-100%);
-  opacity: 0;
 }
 </style>
