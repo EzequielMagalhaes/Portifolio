@@ -1,9 +1,9 @@
 <template>
-    <div class="flex flex-col gap-5 py-10">
+    <div class="flex flex-col gap-5 py-5">
         <h1 class="text-5xl font-bold text-neutral-300 mb-5">My Projects</h1>
         <div class="grid grid-cols-6 gap-5">
-            <div class="col-span-2 h-[500px] p-5 rounded-lg bg-neutral-900 bg-center bg-cover bg-no-repeat flex flex-col justify-between items-start">
-                <img :src="currentProject.logo" class="h-20 p-3 rounded-xl" alt="project-logo">
+            <div class="col-span-2 h-[530px] p-5 rounded-lg bg-neutral-900 bg-center bg-cover bg-no-repeat flex flex-col justify-between items-start">
+                <img :src="currentProject.logo" :class="getCurrentProjectClass(currentProject.logo)" alt="project-logo">
                 <h1 class="text-3xl font-bold">{{ currentProject.title }}</h1>
                 <p class="text-lg text-neutral-500">{{ currentProject.description }}</p>
                 <p class="text-lg text-neutral-500">{{ currentProject.subdescription }}</p>
@@ -43,11 +43,12 @@
                 <!-- END CAROUSEL -->
             </div>
             <transition :name="transitionName" mode="out-in">
-                <div 
-                  :key="currentProject.image"
-                  :style="{ backgroundImage: `url(${currentProject.image})` }" 
-                  class="col-span-4 h-[500px] p-5 rounded-lg bg-center bg-cover bg-no-repeat object-scale-down relative">
-                </div>
+                <iframe
+                  :key="currentProject.site"
+                  :src="currentProject.site" 
+                  class="col-span-4 h-[624px] w-[930px] rounded-lg bg-center bg-cover bg-no-repeat object-scale-down relative bg-white"
+                  style="transform: scale(0.85); transform-origin: 0 0;">
+                </iframe>
             </transition>
         </div>
     </div>
@@ -150,6 +151,9 @@ export default {
     },
     getStackClass(tech) {
       return tech === 'Docker' || tech === 'Chakra-ui' ? 'h-10 scale-[1.2]' : 'h-10';
+    },
+    getCurrentProjectClass(logo) {
+      return logo === kanbanLogo ? 'h-20 scale-[1.1] p-2' : 'h-20';
     },
     redirect() {
       window.open(this.currentProject.site, '_blank');
