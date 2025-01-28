@@ -49,17 +49,17 @@ const messages = {
       project1: {
         title: 'Rock Paper Scissors',
         description: 'A rock paper scissors game built with vanilla JavaScript.',
-        subdescription: 'This project was built to practice vanilla JavaScript. It is a simple rock paper scissors game that allows users to play against the computer. The app is fully interactive and can be accessed alongside. Below are the technologies used in this project:'
+        subdescription: 'This project was built to practice pure JavaScript. It is a simple example that allows users to play against the computer. The application is fully interactive and can be accessed alongside.'
       },
       project2: {
         title: 'Kanban Board',
         description: 'A simple kanban board app built with React.js and Chakra UI.',
-        subdescription: 'This project was built to practice React.js using Chakra UI for styling. It is a simple kanban board app that allows users to add, edit, and delete tasks. The app is fully interactive and can be accessed alongside. Below are the technologies used in this project:'
+        subdescription: 'This project was built to practice React.js using the Chakra UI library for styling. It is an application that allows users to organize, add, edit and delete tasks. The application is fully interactive and can be accessed alongside.'
       },
       project3: {
         title: 'To Do List',
         description: 'A simple to-do list app built with Vue.js and Tailwind CSS.',
-        subdescription: 'This project was built to practice Vue.js and Tailwind CSS. It is a simple to-do list app that allows users to add, edit, and delete tasks. The app is fully interactive and can be accessed alongside. Below are the technologies used in this project:'
+        subdescription: 'This project was built for a technical test where the technologies used were Vue.js and Tailwind CSS. It is a simple to-do list app that allows users to add, edit, and delete tasks. The application is fully interactive and can be accessed alongside.'
       },
     },
 
@@ -143,17 +143,17 @@ const messages = {
       project1: {
       title: 'Pedra, Papel ou Tesoura',
       description: 'Um jogo de pedra, papel e tesoura construído com JavaScript puro.',
-      subdescription: 'Este projeto foi construído para praticar JavaScript puro. É um simples jogo de pedra, papel e tesoura que permite aos usuários jogar contra o computador. O aplicativo é totalmente interativo e pode ser acessado ao lado. Abaixo estão as tecnologias utilizadas neste projeto:'
+      subdescription: 'Este projeto foi construído para praticar JavaScript puro. É um exemplo simples que permite aos usuários jogar contra o computador. O aplicativo é totalmente interativo e pode ser acessado ao lado.'
       },
       project2: {
       title: 'Quadro Kanban',
-      description: 'Um aplicativo simples de quadro kanban construído com React.js e Chakra UI.',
-      subdescription: 'Este projeto foi construído para praticar React.js utilizando na estilização a biblioteca Chakra UI. É um aplicativo simples de quadro kanban que permite aos usuários adicionar, editar e excluir tarefas. O aplicativo é totalmente interativo e pode ser acessado ao lado. Abaixo estão as tecnologias utilizadas neste projeto:'
+      description: 'Um quadro kanban construído com React.js e Chakra UI.',
+      subdescription: 'Este projeto foi construído para praticar React.js utilizando na estilização a biblioteca Chakra UI. É um aplicativo que permite aos usuários organizar, adicionar, editar e excluir tarefas. O aplicativo é totalmente interativo e pode ser acessado ao lado.'
       },
       project3: {
       title: 'Lista de Tarefas',
-      description: 'Um aplicativo simples de lista de tarefas construído com Vue.js e Tailwind CSS.',
-      subdescription: 'Este projeto foi construído para praticar Vue.js e Tailwind CSS. É um aplicativo simples de lista de tarefas que permite aos usuários adicionar, editar e excluir tarefas. O aplicativo é totalmente interativo e pode ser acessado ao lado. Abaixo estão as tecnologias utilizadas neste projeto:'
+      description: 'Um aplicativo de lista de tarefas construído com Vue.js e Tailwind CSS.',
+      subdescription: 'Este projeto foi construído para um teste técnico onde as tecnologias utilizadas eram Vue.js e Tailwind CSS. É um aplicativo simples de lista de tarefas que permite aos usuários adicionar, editar e excluir tarefas. O aplicativo é totalmente interativo e pode ser acessado ao lado.'
     }
     },
 

@@ -1,9 +1,18 @@
 <template>
-    <div class="flex flex-col gap-5 py-5">
+    <div class="flex flex-col gap-5 py-10">
         <h1 class="text-5xl font-bold text-neutral-300 mb-5">{{ $t('projects.title') }}</h1>
         <div class="grid grid-cols-6 gap-3">
-            <div class="col-span-2 h-[530px] p-3 rounded-lg bg-neutral-900 bg-center bg-cover bg-no-repeat flex flex-col justify-between items-start">
-                <img :src="currentProject.logo" :class="getCurrentProjectClass(currentProject.logo)" alt="project-logo">
+            <div class="col-span-2 h-[600px] p-3 rounded-lg bg-neutral-900 bg-center bg-cover bg-no-repeat flex flex-col justify-between items-start">
+                <div class="flex justify-between items-center w-full circular-progress">
+                  <img :src="currentProject.logo" :class="getCurrentProjectClass(currentProject.logo)" alt="project-logo">
+                  <div class="relative flex justify-center items-center">
+                    <div class="circular-progress-bar">
+                      <svg class="progress-ring" width="50" height="50">
+                        <circle class="progress-ring__circle" stroke="white" stroke-width="4" fill="transparent" r="22" cx="25" cy="25"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
                 <h1 class="text-3xl font-bold">{{ $t(currentProject.title) }}</h1>
                 <p class="text-lg text-neutral-500">{{ $t(currentProject.description) }}</p>
                 <p class="text-lg text-neutral-500">{{ $t(currentProject.subdescription) }}</p>
@@ -45,8 +54,8 @@
             <iframe
               :key="currentProject.site"
               :src="currentProject.site" 
-              class="col-span-4 h-[624px] w-[950px] rounded-lg bg-center bg-cover bg-no-repeat object-scale-down relative bg-white"
-              style="transform: scale(0.85); transform-origin: 0 0;">
+              class="col-span-4 h-[600px] w-[810px] rounded-lg bg-center bg-cover bg-no-repeat object-scale-down relative bg-white"
+              style=" transform-origin: 0 0;">
             </iframe>
         </div>
     </div>
@@ -105,6 +114,8 @@ export default {
       ],
       currentIndex: 0,
       timer: null,
+      progressValue: 0,
+      progressInterval: null
     }
   },
   computed: {
@@ -151,7 +162,7 @@ export default {
       return tech === 'Docker' || tech === 'Chakra-ui' ? 'h-10 scale-[1.2]' : 'h-10';
     },
     getCurrentProjectClass(logo) {
-      return logo === kanbanLogo ? 'h-20 scale-[1.1] p-2' : 'h-20';
+      return logo === kanbanLogo ? 'h-20 p-2' : 'h-20';
     },
     redirect() {
       window.open(this.currentProject.site, '_blank');
@@ -167,14 +178,17 @@ export default {
     prevProject() {
       this.currentIndex = (this.currentIndex - 1 + this.projects.length) % this.projects.length;
       this.resetTimer();
+      this.resetProgress();
     },
     nextProject() {
       this.currentIndex = (this.currentIndex + 1) % this.projects.length;
       this.resetTimer();
+      this.resetProgress();
     },
     goToProject(index) {
       this.currentIndex = index;
       this.resetTimer();
+      this.resetProgress();
     },
     updateTooltips() {
     // Remova todos os tooltips existentes
@@ -248,14 +262,45 @@ export default {
     resetTimer() {
       this.stopTimer();
       this.startTimer();
+    },
+    startProgress() {
+      const circle = document.querySelector('.progress-ring__circle');
+      const radius = circle.r.baseVal.value;
+      const circumference = 2 * Math.PI * radius;
+
+      circle.style.strokeDasharray = `${circumference} ${circumference}`;
+      circle.style.strokeDashoffset = circumference;
+
+      const setProgress = (percent) => {
+        const offset = circumference - (percent / 100) * circumference;
+        circle.style.strokeDashoffset = offset;
+      };
+
+      const updateProgress = () => {
+        if (this.progressValue < 100) {
+          this.progressValue += 1;
+          setProgress(this.progressValue);
+        } else {
+          clearInterval(this.progressInterval);
+        }
+      };
+
+      this.progressInterval = setInterval(updateProgress, 100);
+    },
+    resetProgress() {
+      clearInterval(this.progressInterval);
+      this.progressValue = 0;
+      this.startProgress();
     }
   },
   mounted() {
     this.updateTooltips();
     this.startTimer();
+    this.startProgress();
   },
   beforeDestroy() {
     this.stopTimer();
+    clearInterval(this.progressInterval);
   },
   watch: {
   currentIndex() {
@@ -301,5 +346,22 @@ button:hover #site2,
 button:hover #left2,
 button:hover #right2 {
   display: block;
+}
+
+.circular-progress-bar {
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+
+.progress-ring {
+  transform: rotate(-45deg);
+  transform-origin: 50% 50%;
+}
+
+.progress-ring__circle {
+  transition: stroke-dashoffset 0.35s;
+  transform: rotate(-45deg);
+  transform-origin: 50% 50%;
 }
 </style>

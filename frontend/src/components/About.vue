@@ -1,6 +1,6 @@
 <template>
     <div class="font-roboto">
-        <h1 class="text-5xl font-bold text-grey-300 mb-5">{{ $t('about.title') }}</h1>
+        <h1 class="text-5xl font-bold text-grey-300 mb-5 py-5">{{ $t('about.title') }}</h1>
         <!-- GRID -->
         <div class="flex gap-5">
             <!-- Coluna Esquerda -->
