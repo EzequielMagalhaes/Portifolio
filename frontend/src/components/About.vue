@@ -52,7 +52,7 @@ import imgCard1 from '../assets/Foto de perfil.png'
 import imgCard2 from '../assets/Typing.svg'
 import imgCard3 from '../assets/Stack.svg'
 import imgCard4 from '../assets/Studying.svg'
-import imgCard5 from '../assets/Hobbies.svg'
+import imgCard5 from '../assets/Programming.svg'
 
 const imgCard = [imgCard1, imgCard2, imgCard3, imgCard4, imgCard5];
 

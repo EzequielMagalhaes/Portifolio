@@ -15,7 +15,7 @@
       <Clients/>
     </section>-->
     <section id="experience">
-      <Experience :experiences="workExperiences"/>
+      <Experience/>
     </section>
     <section id="contact">
       <Contact/>
@@ -39,11 +39,6 @@ import Clients from './components/Clients.vue'
 import Experience from './components/Experience.vue'
 import Contact from './components/Contact.vue'
 import Footer from './components/Footer.vue'
-import experienceLogo1 from './assets/TI-suport.png';
-import experienceLogo2 from './assets/ferragens-pontual.png';
-import experienceLogo3 from './assets/pgdf.png';
-
-const experienceLogo = [experienceLogo1, experienceLogo2, experienceLogo3];
 
 export default {
   components: { Navbar, Header, About, Project, Clients, Experience, Contact, Footer },
@@ -51,35 +46,6 @@ export default {
     return {
       showScrollButton: false,
       scrollButtonImage: '/src/assets/black_arrow_up.svg',
-      workExperiences: [
-        {
-          jobEnterprise: 'PLT Empreendimentos e Participações Empresariais LTDA',
-          jobName: 'Technical support operator',
-          jobStartDate: 'Jul 2023',
-          jobEndDate: 'Nov 2024',
-          description: 'Provided N2 technical support, Help Desk and remote customer support. Responsible for maintenance and assembly of computers, networks, and servers. Supported ERP systems (Movere), installed and maintained network and CCTV infrastructure, performed printer maintenance, and configured PABX telephony systems.',
-          logo: experienceLogo[0],
-          tasks: '• N2 technical support; • Help Desk / Remote customer support; • Maintenance and assembly of computers; • Maintenance of networks and servers; • Support with ERP systems (Movere); • Installation and maintenance of network and CCTV infrastructure; • Printer maintenance; • Configuration of PABX systems - Telephony.'
-        },
-        {
-          jobEnterprise: 'Ferragens Pontual',
-          jobName: 'Retail salesperson',
-          jobStartDate: 'Jun 2021',
-          jobEndDate: 'Dez 2022',
-          description: 'Retail sale of hardware and construction materials, contact and customer service, teamwork. Managed inventory, assisted in product displays, and provided technical advice to customers regarding product selection and usage. Developed strong customer relationships and contributed to sales growth through excellent service and product knowledge.',
-          logo: experienceLogo[1],
-          tasks: '• Retail sale of hardware and construction materials; • Contact and customer service; • Teamwork;'
-        },
-        {
-          jobEnterprise: 'Procuradoria-Geral do Distrito Federal',
-          jobName: 'Trainee',
-          jobStartDate: 'Sep 2019',
-          jobEndDate: 'Dez 2020',
-          description: 'Conducted legal research, provided administrative support, assisted with case preparation, and maintained databases of legal cases. I have developed strong analytical and problem-solving skills through extensive legal research and document review.',
-          logo: experienceLogo[2],
-          tasks: '• Assistance in the transport of legal and administrative processes; • Processing of internal legal proceedings;'
-        }
-      ]
     };
   },
   methods: {

@@ -69,7 +69,6 @@ import typeScriptIcon from '../assets/stack-icons/typescript-icon.svg';
 import tailwindIcon from '../assets/stack-icons/tailwindcss-icon.svg';
 import dockerIcon from '../assets/stack-icons/docker-icon.svg';
 import chakraIcon from '../assets/stack-icons/chakra-icon.svg';
-import babelIcon from '../assets/stack-icons/babel-icon.svg';
 import jestIcon from '../assets/stack-icons/jest-icon.svg';
 import gitIcon from '../assets/stack-icons/git-icon.svg';
 
@@ -98,7 +97,7 @@ export default {
           title: 'projects.project3.title',
           description: 'projects.project3.description',
           subdescription: 'projects.project3.subdescription',
-          stack: ['Vue.js','Vuetify', 'Tailwind CSS', 'JavaScript', 'Babel', 'Jest', 'Docker', 'Git'],
+          stack: ['Vue.js','Vuetify', 'Tailwind CSS', 'JavaScript', 'Jest', 'Docker', 'Git'],
           site: 'https://vue-to-do-list-ochre.vercel.app/'
         },
         
@@ -140,8 +139,6 @@ export default {
           return dockerIcon;
         case 'Chakra-ui':
           return chakraIcon;
-        case 'Babel':
-          return babelIcon;
         case 'Jest': 
           return jestIcon;
         case 'Git':
