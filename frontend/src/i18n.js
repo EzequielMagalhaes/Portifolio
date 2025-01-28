@@ -90,9 +90,25 @@ const messages = {
         description: 'Conducted legal research, provided administrative support, assisted with case preparation, and maintained databases of legal cases. I have developed strong analytical and problem-solving skills through extensive legal research and document review.',
         tasks: '• Assistance in the transport of legal and administrative processes; • Processing of internal legal proceedings;'
       },
+    },
+
+    // CONTACT //
+    contact: {
+      title: 'Contact me',
+      description: 'Let\'s talk',
+      subdescription: 'Feel free to reach out to me using the form below. Whether you have a question, a project proposal, or just want to say hello, I\'ll get back to you as soon as possible.',
+      fullName: 'Full name',
+      emailAdd: 'Email Address',
+      yourMessage: 'Your message',
+      sizeText: 'Max 500 characters',
+      sendBtn: 'Send',
+      placeholder: {
+        name:'Your Name',
+        email:'your-email@mail.com',
+        message:'Enter text here...'
+      }
     }
   },
-    // CONTACT //
 
 //  ||  PORTUGUÊS  ||  //
   pt: {
@@ -184,9 +200,24 @@ const messages = {
         description: 'Conduzi pesquisas jurídicas, forneci suporte administrativo, auxiliei na preparação de casos e mantive bancos de dados de casos jurídicos. Desenvolvi fortes habilidades analíticas e de resolução de problemas por meio de extensas pesquisas jurídicas e revisão de documentos.',
         tasks: '• Assistência no transporte de processos jurídicos e administrativos; • Processamento de processos jurídicos internos;'
       },
-    }
+    },
 
     // CONTACT //
+    contact: {
+      title: 'Entre em contato comigo',
+      description: 'Vamos conversar',
+      subdescription: 'Sinta-se à vontade para entrar em contato comigo usando o formulário abaixo. Quer você tenha uma dúvida, uma proposta de projeto ou apenas queira dizer olá, entrarei em contato com você o mais breve possível.',
+      fullName: 'Nome completo',
+      emailAdd: 'Endereço de email',
+      yourMessage: 'Sua mensagem',
+      sizeText: 'Max 500 caracteres',
+      sendBtn: 'Enviar',
+      placeholder: {
+        name:'Seu Nome',
+        email:'seu-email@mail.com',
+        message:'Insira o texto aqui...'
+      }
+    }
   },
 };
 
