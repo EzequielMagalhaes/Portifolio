@@ -103,9 +103,9 @@ const messages = {
       sizeText: 'Max 500 characters',
       sendBtn: 'Send',
       placeholder: {
-        name:'Your Name',
-        email:'your-email@mail.com',
-        message:'Enter text here...'
+        name: 'Your Name',
+        email: 'your-email@mail.com',
+        message: 'Enter text here...'
       }
     }
   },
@@ -213,16 +213,16 @@ const messages = {
       sizeText: 'Max 500 caracteres',
       sendBtn: 'Enviar',
       placeholder: {
-        name:'Seu Nome',
-        email:'seu-email@mail.com',
-        message:'Insira o texto aqui...'
+        name: 'Seu Nome',
+        email: 'seu-email@mail.com',
+        message: 'Insira o texto aqui...'
       }
     }
   },
 };
 
 const i18n = createI18n({
-  locale: 'pt', // idioma padrão
+  locale: 'en', // idioma padrão
   messages,
 });
 
