@@ -1,12 +1,14 @@
 <template>
-<div class="py-10 flex flex-col gap-5">
+<div class="py-10 flex flex-col gap-5 py-5">
     <h1 class="text-5xl font-bold text-neutral-300">{{ $t('experience.title') }}</h1>
     <div class="flex gap-5">
         <div class=" flex gap-5 h-[850px] rounded-lg p-3 bg-neutral-900">
             <!-- Experience Icons -->
             <div class="flex flex-col w-1/5 gap-5 py-8 justify-around items-center">
-                <img v-for="(experience, index) in experiences" :key="index" :src="experience.logo" :class="['h-32 bg-neutral-900 rounded-xl', index === 2 ? 'w-32' : '']" alt="">
-                <div class="p-[1px] h-36 bg-neutral-800" v-if="index < experiences.length - 1"></div>
+                <div v-for="(experience, index) in experiences" :key="index" class="flex flex-col items-center gap-5">
+                    <img :src="experience.logo" :class="['h-32 bg-neutral-900 rounded-xl', index === 2 ? 'w-32' : '']" alt="">
+                    <div v-if="index < experiences.length - 1" class="p-[1px] h-36 bg-neutral-500"></div>
+                </div>
             </div>
             <!-- End Experience Icons -->
             <!-- Experience Text -->

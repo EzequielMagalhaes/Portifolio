@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-5">
+  <div class="flex flex-col gap-5 py-5">
     <h1 class="text-5xl font-bold text-neutral-300">Contact me</h1>
     <div class="flex justify-center items-center">
         <div class="relative flex justify-center items-end rounded-3xl bg-neutral-700 h-[620px] w-[800px]">
