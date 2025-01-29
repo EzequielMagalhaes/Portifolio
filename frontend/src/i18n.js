@@ -1,5 +1,23 @@
 import { createI18n } from 'vue-i18n';
 
+const cardTitles = {
+  en: {
+    introduction: "Hi I'm Ezequiel",
+    experience: "Professional experience",
+    techStack: "Tech stack",
+    education: "Education",
+    knowledge: "General knowledge"
+  },
+  
+  pt: {
+    introduction: "Olá, eu sou o Ezequiel",
+    experience: "Experiência Profissional",
+    techStack: "Tecnologias",
+    education: "Educação",
+    knowledge: "Conhecimento geral"
+  }
+};
+
 const messages = {
   en: {
     title: '<Portfolio/>',
@@ -21,28 +39,29 @@ const messages = {
     // ABOUT //
     about: {
       title: 'About me',
-      card1: {
-        title: "Hi I'm Ezequiel",
-        description: "A tech enthusiast passionate about solving problems and learning continuously. Welcome to my portfolio, where I share my skills, experiences, and growth journey!"
+      aria: {
+        cardDescription: "Detailed information about {title}"
       },
-      card2: {
-        title: "Professional Experience",
-        description: "I’ve gained valuable experience working on projects in technical support, system maintenance, and software development, preparing me to tackle diverse challenges in the tech industry."
-      },
-      card3: {
-        title: "Tech Stack",
-        description: "Over the course of my journey, I've gained hands-on experience with various technologies through personal and academic projects. This portfolio, for instance, was built using tools such as Vue.js, JavaScript, Spring Boot, Tailwind CSS, and Docker. Additionally, I have applied my knowledge of CI/CD pipelines and authentication mechanisms with Spring in recent projects."
-      },
-      card4: {
-        title: "Education",
-        description: "I am currently studying Computer Science, building a solid foundation in programming and systems design. In addition, I completed several certified courses, which are focused on the software development area."
-      },
-      card5: {
-        title: "Hobbies",
-        description: "Beyond coding, I enjoy exploring new technologies, gaming, reading, and staying active through fitness routines, keeping a balance between study, work and social life."
+      cards: {
+        introduction: {
+          description: "Welcome to my portfolio, where I share my skills, experiences, and growth journey! I'm a tech enthusiast passionate about solving problems and learning continuously."
+        },
+        experience: {
+          description: "I\'ve gained valuable experience working on projects in technical support, system maintenance, and software development, preparing me to tackle diverse challenges in the tech industry."
+        },
+        techStack: {
+          description: "working on it"
+        },
+        education: {
+          description: "I am currently studying Computer Science, building a solid foundation in programming and systems design. In addition, I took several certified courses focused on the area of software development area. And I'm currently studying more about CI/CD pipelines and Docker containerization to implement these features in my future projects"
+        },
+        knowledge: {
+          description: "Proficient in multiple programming paradigms with hands-on experience in Java, Python, and C#. Skilled in database systems including both relational (MySQL) and NoSQL (MongoDB) solutions, also skilled in Git workflows."
+          // "Full-stack developer with hands-on experience across Java, Python, and C# through personal and academic projects. Specializing in modern web technologies: Frontend with React/Vue using TypeScript, backend with Node.js and Spring Boot. Proficient in both relational (PostgreSQL/MySQL) and NoSQL (MongoDB) databases and skilled in Git workflows."
+        }
       }
     },
-
+    
     // PROJECTS //
     projects: {
       title: 'My Projects',
@@ -91,7 +110,7 @@ const messages = {
         tasks: '• Assistance in the transport of legal and administrative processes; • Processing of internal legal proceedings;'
       },
     },
-
+    
     // CONTACT //
     contact: {
       title: 'Contact me',
@@ -109,8 +128,8 @@ const messages = {
       }
     }
   },
-
-//  ||  PORTUGUÊS  ||  //
+  
+  //  ||  PORTUGUÊS  ||  //
   pt: {
     title: '<Portfólio/>',
     // NAVBAR //
@@ -121,58 +140,61 @@ const messages = {
       experience: 'Experiência',
       contact: 'Contato',
     },
-
+    
     // HEADER //
     header: {
       title: 'Olá eu sou Ezequiel',
       typeArray: ['DESENVOLVEDOR DE SOFTWARE', 'DESENVOLVEDOR WEB']
     },
-
+    
     // ABOUT //
     about: {
       title: 'Sobre mim',
-      card1: {
-        title: "Olá, eu sou o Ezequiel",
-        description: "Um entusiasta de tecnologia apaixonado por resolver problemas e aprender continuamente. Bem-vindo ao meu portfólio, onde compartilho minhas habilidades, experiências e jornada de crescimento!"
+      aria: {
+        cardDescription: "Informações detalhadas sobre {title}"
       },
-      card2: {
-        title: "Experiência Profissional",
-        description: "Adquiri experiência valiosa trabalhando em projetos de suporte técnico, manutenção de sistemas e desenvolvimento de software, preparando-me para enfrentar diversos desafios na indústria de tecnologia."
-      },
-      card3: {
-        title: "Tecnologias",
-        description: "Ao longo da minha jornada, adquiri experiência prática com várias tecnologias através de projetos pessoais e acadêmicos. Este portfólio, por exemplo, foi construído usando ferramentas como Vue.js, JavaScript, Spring Boot, Tailwind CSS e Docker. Além disso, apliquei meu conhecimento de pipelines CI/CD e mecanismos de autenticação com Spring em projetos recentes."
-      },
-      card4: {
-        title: "Educação",
-        description: "Atualmente estou estudando Ciência da Computação, construindo uma base sólida em programação e design de sistemas. Além disso, concluí vários cursos certificados, focados na área de desenvolvimento de software."
-      },
-      card5: {
-        title: "Hobbies",
-        description: "Além de programar, gosto de explorar novas tecnologias, jogar, ler e manter-me ativo através de rotinas de exercícios, mantendo um equilíbrio entre estudo, trabalho e vida social."
+      cards: {
+        introduction: {
+          description: "Bem-vindo ao meu portfólio, onde compartilho minhas habilidades, experiências e jornada de crescimento! Eu sou um entusiasta de tecnologia apaixonado por resolver problemas e aprender continuamente."
+        },
+        experience: {
+          description: "Adquiri experiência valiosa trabalhando em projetos de suporte técnico, manutenção de sistemas e desenvolvimento de software, preparando-me para enfrentar diversos desafios na indústria de tecnologia."
+          
+        },
+        techStack: {
+          description: "trabalhando nisso..."
+          
+        },
+        education: {
+          description: "Atualmente estou estudando Ciência da Computação, construindo uma base sólida em programação e design de sistemas. Além disso, realizei diversos cursos certificados voltados para a área de desenvolvimento de software. E atualmente estou estudando mais sobre pipelines CI/CD e conteinerização Docker para implementar esses recursos em meus projetos futuros."
+        },
+        knowledge: {
+          description: "Proficiente em vários paradigmas de programação com experiência prática em Java, Python e C#. Hábil em sistemas de banco de dados, incluindo soluções relacionais (MySQL) e NoSQL (MongoDB), também hábil em fluxos de trabalho Git."
+          // "Desenvolvedor full-stack com experiência prática em Java, Python e C# em projetos pessoais e acadêmicos. Especializado em tecnologias web modernas: Frontend com React/Vue usando TypeScript, backend com Node.js e Spring Boot. Proficiente em bancos de dados relacionais (PostgreSQL/MySQL) e NoSQL (MongoDB) e qualificado em fluxos de trabalho Git."
+        }
       }
     },
-
+    
     // PROJECTS //
     projects: {
       title: 'Meus Projetos',
       project1: {
-      title: 'Pedra, Papel ou Tesoura',
-      description: 'Um jogo de pedra, papel e tesoura construído com JavaScript puro.',
-      subdescription: 'Este projeto foi construído para praticar JavaScript puro. É um exemplo simples que permite aos usuários jogar contra o computador. O aplicativo é totalmente interativo e pode ser acessado ao lado.'
+        title: 'Pedra, Papel ou Tesoura',
+        description: 'Um jogo de pedra, papel e tesoura construído com JavaScript puro.',
+        subdescription: 'Este projeto foi construído para praticar JavaScript puro. É um exemplo simples que permite aos usuários jogar contra o computador. O aplicativo é totalmente interativo e pode ser acessado ao lado.'
       },
       project2: {
-      title: 'Quadro Kanban',
-      description: 'Um quadro kanban construído com React.js e Chakra UI.',
-      subdescription: 'Este projeto foi construído para praticar React.js utilizando na estilização a biblioteca Chakra UI. É um aplicativo que permite aos usuários organizar, adicionar, editar e excluir tarefas. O aplicativo é totalmente interativo e pode ser acessado ao lado.'
+        title: 'Quadro Kanban',
+        description: 'Um quadro kanban construído com React.js e Chakra UI.',
+        subdescription: 'Este projeto foi construído para praticar React.js utilizando na estilização a biblioteca Chakra UI. É um aplicativo que permite aos usuários organizar, adicionar, editar e excluir tarefas. O aplicativo é totalmente interativo e pode ser acessado ao lado.'
       },
       project3: {
-      title: 'Lista de Tarefas',
-      description: 'Um aplicativo de lista de tarefas construído com Vue.js e Tailwind CSS.',
-      subdescription: 'Este projeto foi construído para um teste técnico onde as tecnologias utilizadas eram Vue.js e Tailwind CSS. É um aplicativo simples de lista de tarefas que permite aos usuários adicionar, editar e excluir tarefas. O aplicativo é totalmente interativo e pode ser acessado ao lado.'
-    }
+        title: 'Lista de Tarefas',
+        description: 'Um aplicativo de lista de tarefas construído com Vue.js e Tailwind CSS.',
+        subdescription: 'Este projeto foi construído para um teste técnico onde as tecnologias utilizadas eram Vue.js e Tailwind CSS. É um aplicativo simples de lista de tarefas que permite aos usuários adicionar, editar e excluir tarefas. O aplicativo é totalmente interativo e pode ser acessado ao lado.'
+      }
     },
-
+    
     // EXPERIENCE //
     experience: {
       title: 'Minha experiência de trabalho',
@@ -201,7 +223,7 @@ const messages = {
         tasks: '• Assistência no transporte de processos jurídicos e administrativos; • Processamento de processos jurídicos internos;'
       },
     },
-
+    
     // CONTACT //
     contact: {
       title: 'Entre em contato comigo',
@@ -220,8 +242,11 @@ const messages = {
     }
   },
 };
+messages.en.cardTitles = cardTitles.en;
+messages.pt.cardTitles = cardTitles.pt;
 
 const i18n = createI18n({
+  legacy: false,
   locale: 'en', // idioma padrão
   messages,
 });
