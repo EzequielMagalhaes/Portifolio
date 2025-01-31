@@ -125,6 +125,13 @@ const messages = {
         name: 'Your Name',
         email: 'your-email@mail.com',
         message: 'Enter text here...'
+      },
+      response: {
+        errors:{
+          invalidDomain: 'The email domain must be gmail.com, hotmail.com or yahoo.com',
+          errorMessage: 'An error occurred while sending your message. Please try again later...'
+        },
+        successMessage: 'Your message has been sent successfully. I will get back to you as soon as possible.',
       }
     }
   },
@@ -238,6 +245,13 @@ const messages = {
         name: 'Seu Nome',
         email: 'seu-email@mail.com',
         message: 'Insira o texto aqui...'
+      },
+      response: {
+        errors:{
+          invalidDomain: 'O domínio do email deve ser gmail.com, hotmail.com ou yahoo.com',
+          errorMessage: 'Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde...'
+        },
+        successMessage: 'Sua mensagem foi enviada com sucesso. Vou te responder assim que possível.',
       }
     }
   },
