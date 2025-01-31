@@ -34,8 +34,8 @@
                   <p class="text-neutral-500 text-sm">{{ $t('contact.sizeText') }}</p>
                   <button type="submit" class="flex justify-center items-center w-full gap-2 p-2 rounded-full mt-2 bg-neutral-700 hover:bg-neutral-500 hover:text-neutral-900" id="black-send" @mouseenter="showBlackSend('send')" @mouseleave="hideBlackSend('send')">
                     <span class="text-xl">{{ $t('contact.sendBtn') }}</span>
-                    <img id="send1" src="../assets/white-send.svg" class="h-8 -rotate-45 pb-2" alt="">
-                    <img id="send2" src="../assets/black-send.svg" class="h-8 hidden opacity-70 -rotate-45 pb-2" alt="">
+                    <img id="send1" src="../assets/contact-icons/white-send.svg" class="h-8 -rotate-45 pb-2" alt="">
+                    <img id="send2" src="../assets/contact-icons/black-send.svg" class="h-8 hidden opacity-70 -rotate-45 pb-2" alt="">
                   </button>
                 </form>
                 <!-- END INPUTS -->

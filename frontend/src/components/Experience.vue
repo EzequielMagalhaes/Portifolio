@@ -30,9 +30,9 @@
 </template>
 
 <script>
-import experienceLogo1 from '../assets/TI-suport.png';
-import experienceLogo2 from '../assets/ferragens-pontual.png';
-import experienceLogo3 from '../assets/pgdf.png';
+import experienceLogo1 from '../assets/experience-icons/TI-suport.png';
+import experienceLogo2 from '../assets/experience-icons/ferragens-pontual.png';
+import experienceLogo3 from '../assets/experience-icons/pgdf.png';
 
 const experienceLogo = [experienceLogo1, experienceLogo2, experienceLogo3];
 

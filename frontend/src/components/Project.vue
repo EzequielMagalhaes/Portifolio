@@ -24,8 +24,8 @@
                     <!-- END STACK -->
                     <div class="flex gap-2 items-center text-xl">
                         <button @click="redirect" @mouseenter="showWhiteArrow('site')" @mouseleave="hideWhiteArrow('site')" id="goto-site" class="text-black bg-neutral-300 p-2 rounded-full flex items-center gap-2 hover:bg-black hover:text-neutral-300">
-                            <img id="site1" src="../assets/black_open_in_new_.svg" class="h-6" alt="arrow-site">
-                            <img id="site2" src="../assets/white_open_in_new.svg" class="h-6 hidden" alt="arrow-site">
+                            <img id="site1" src="../assets/project-icons/black_open_in_new_.svg" class="h-6" alt="arrow-site">
+                            <img id="site2" src="../assets/project-icons/white_open_in_new.svg" class="h-6 hidden" alt="arrow-site">
                         </button>
                     </div>
                 </div>
@@ -33,8 +33,8 @@
                 <div class="flex justify-between items-center w-full">
                     <!-- PREV BUTTON -->
                     <button id="prev-image" @click="prevProject" @mouseenter="showWhiteArrow('left')" @mouseleave="hideWhiteArrow('left')" class="bg-neutral-300 h-10 w-10 cursor-pointer hover:bg-black rounded-full flex items-center justify-center relative">
-                        <img id="left1" class="h-8" src="../assets/black_arrow_left.svg" alt="arrow-carousel">
-                        <img id="left2" class="h-8 hidden absolute" src="../assets/white_arrow_left.svg" alt="arrow-carousel">
+                        <img id="left1" class="h-8" src="../assets/project-icons/black_arrow_left.svg" alt="arrow-carousel">
+                        <img id="left2" class="h-8 hidden absolute" src="../assets/project-icons/white_arrow_left.svg" alt="arrow-carousel">
                     </button>
                     <!-- NEXT BUTTON -->
                     <!-- DOTS -->
@@ -44,8 +44,8 @@
                     <!-- END DOTS -->
                     <!-- NEXT BUTTON -->
                     <button id="next-image" @click="nextProject" @mouseenter="showWhiteArrow('right')" @mouseleave="hideWhiteArrow('right')" class="bg-neutral-300 h-10 w-10 cursor-pointer hover:bg-black rounded-full flex items-center justify-center relative">
-                        <img id="right1" class="h-8" src="../assets/black_arrow_right.svg" alt="arrow-carousel">
-                        <img id="right2" class="h-8 hidden absolute" src="../assets/white_arrow_right.svg" alt="arrow-carousel">
+                        <img id="right1" class="h-8" src="../assets/project-icons/black_arrow_right.svg" alt="arrow-carousel">
+                        <img id="right2" class="h-8 hidden absolute" src="../assets/project-icons/white_arrow_right.svg" alt="arrow-carousel">
                     </button>
                     <!-- END NEXT BUTTON -->
                 </div>
@@ -63,9 +63,9 @@
 
 <script>
 import { computePosition, shift, flip, offset } from "@floating-ui/dom";
-import todoLogo from '../assets/project-logo.png';
-import kanbanLogo from '../assets/kanban-logo.png';
-import rpsLogo from '../assets/rock-paper-scissor-logo.png';
+import todoLogo from '../assets/project-icons/project-logo.png';
+import kanbanLogo from '../assets/project-icons/kanban-logo.png';
+import rpsLogo from '../assets/project-icons/rock-paper-scissor-logo.png';
 import htmlIcon from '../assets/stack-icons/html-icon.svg';
 import cssIcon from '../assets/stack-icons/css-icon.svg';
 import viteIcon from '../assets/stack-icons/vitejs-icon.svg';
