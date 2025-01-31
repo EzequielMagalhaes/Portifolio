@@ -31,14 +31,14 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-import Navbar from './components/Navbar.vue'
-import Header from './components/Header.vue'
-import About from './components/About.vue'
-import Project from './components/Project.vue'
-import Experience from './components/Experience.vue'
-import Contact from './components/Contact.vue'
-import Footer from './components/Footer.vue'
-import ScrollToTopButton from './components/ScrollToTopButton.vue'
+import Navbar from './components/Navbar/Navbar.vue'
+import Header from './components/Header/Header.vue'
+import About from './components/About/About.vue'
+import Project from './components/Projects/Project.vue'
+import Experience from './components/Experience/Experience.vue'
+import Contact from './components/Contact/Contact.vue'
+import Footer from './components/Footer/Footer.vue'
+import ScrollToTopButton from './components/Navbar/ScrollToTopButton.vue'
 
 const showScrollButton = ref(false)
 let observer = null
