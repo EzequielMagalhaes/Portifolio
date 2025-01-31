@@ -1,115 +1,145 @@
 <template>
-  <nav class="flex justify-between items-center font-roboto">
-    <h1 class="text-4xl text-neutral-300 font-bold tracking-[0.10em] cursor-pointer">{{ $t('title') }}</h1>
-    <ul class="flex space-x-10" id="navbar">
-      <li class="cursor-pointer nav-item" :class="{ 'active-section': activeSection === 'about' }" @click="scrollToSection('about')">{{ $t('navbar.about') }}</li>
-      <li class="cursor-pointer nav-item" :class="{ 'active-section': activeSection === 'projects' }" @click="scrollToSection('projects')">{{ $t('navbar.projects') }}</li>
-      <li class="cursor-pointer nav-item" :class="{ 'active-section': activeSection === 'experience' }" @click="scrollToSection('experience')">{{ $t('navbar.experience') }}</li>
-      <li class="cursor-pointer nav-item" :class="{ 'active-section': activeSection === 'contact' }" @click="scrollToSection('contact')">{{ $t('navbar.contact') }}</li>
-      <li class="relative cursor-pointer" @click="toggleLanguage">
-        <img src="../../assets/navbar-icons/black-translate.svg" class="h-8 invert" id="translate" alt="translate img">
-        <div v-if="showTooltip" ref="tooltip" class="tooltip">{{ currentLanguage }}</div>
-      </li>
-    </ul>
-  </nav>
+  <div class="relative">
+    <nav 
+      class="flex justify-between items-center px-4 py-3 md:px-8"
+      aria-label="Main navigation"
+    >
+      <!-- Logo -->
+      <h1 
+        class="text-3xl md:text-4xl text-neutral-300 font-bold tracking-[0.10em] cursor-pointer"
+        @click="scrollToSection('home')"
+        role="heading"
+        aria-level="1"
+      >
+        {{ $t('title') }}
+      </h1>
+
+      <!-- Desktop Navigation -->
+      <ul class="hidden md:flex space-x-6 lg:space-x-10" role="menubar">
+        <li 
+          v-for="section in sections"
+          :key="section"
+          role="menuitem"
+          tabindex="0"
+          class="nav-item"
+          :class="{ 'active-section': activeSection === section }"
+          @click="scrollToSection(section)"
+          @keyup.enter="scrollToSection(section)"
+        >
+          {{ $t(`navbar.${section}`) }}
+        </li>
+        <li role="menuitem">
+          <LanguageSwitcher :current-language="currentLanguage" @toggle="toggleLanguage"/>
+        </li>
+      </ul>
+
+      <!-- Mobile Menu Toggle -->
+       <button
+        class="md:hidden p-2 rounded-lg hover:bg-neutral-800"
+        aria-label="Toggle menu"
+        @click="toggleMobileMenu"
+      >
+        <svg class="w-8 h-8 text-neutral-300" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <MobileMenu 
+      :is-open="showMobileMenu"
+      :sections="sections"
+      :active-section="activeSection"
+      @close="showMobileMenu = false"
+      @navigate="handleNavigation"
+    />
+  </div>
 </template>
 
 <script>
-import { computePosition, offset, flip, shift } from '@floating-ui/dom';
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { useI18n } from 'vue-i18n'
+import LanguageSwitcher from './LanguageSwitcher.vue'
+import MobileMenu from './MobileMenu.vue' // Import FIRST
+import { useSectionObserver } from '../Navbar/useSectionObserver'
 
 export default {
-  data() {
-    return {
-      showTooltip: false,
-      currentLanguage: this.$i18n.locale === 'en' ? 'English' : 'Português',
-      activeSection: ''
-    };
+  components: {
+    MobileMenu, // Proper component registration
+    LanguageSwitcher
   },
-  methods: {
-    scrollToSection(sectionId) {
-      const section = document.getElementById(sectionId);
+
+  setup() {
+    const { locale } = useI18n()
+    const sections = ['about', 'projects', 'experience', 'contact']
+    const showMobileMenu = ref(false)
+    const currentLanguage = ref(locale.value === 'en' ? 'English' : 'Português')
+    const { activeSection, initObserver, cleanupObserver } = useSectionObserver(sections)
+
+    const scrollToSection = (sectionId) => {
+      const section = document.getElementById(sectionId)
       if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
-        this.activeSection = sectionId;
-        setTimeout(() => {
-          this.activeSection = '';
-        }, 500);
+        section.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        })
       }
-    },
-    toggleLanguage() {
-      const currentLocale = this.$i18n.locale;
-      this.$i18n.locale = currentLocale === 'en' ? 'pt' : 'en';
-      this.currentLanguage = this.$i18n.locale === 'en' ? 'English' : 'Português';
-
-      this.showTooltip = false;
-      this.$nextTick(() => {
-        this.showTooltip = true;
-        this.updateTooltipPosition();
-      });
-
-      setTimeout(() => {
-        this.showTooltip = false;
-      }, 2000);
-    },
-    updateTooltipPosition() {
-      const button = document.getElementById('translate');
-      const tooltip = this.$refs.tooltip;
-
-      if (button && tooltip) {
-        computePosition(button, tooltip, {
-          placement: 'bottom',
-          middleware: [offset(10), flip(), shift()],
-        }).then(({ x, y }) => {
-          Object.assign(tooltip.style, {
-            left: `${x + button.offsetWidth / 2 - tooltip.offsetWidth / 2}px`,
-            top: `${y}px`,
-            transform: 'translateX(-25%)'
-          });
-        });
-      }
+      showMobileMenu.value = false
     }
-  },
-  watch: {
-    showTooltip(newVal) {
-      if (newVal) {
-        this.updateTooltipPosition();
-      }
+
+    const handleNavigation = (section) => {
+      scrollToSection(section)
+      showMobileMenu.value = false
+    }
+
+    const toggleMobileMenu = () => {
+      showMobileMenu.value = !showMobileMenu.value
+    }
+
+    const toggleLanguage = () => {
+      locale.value = locale.value === 'en' ? 'pt' : 'en'
+      currentLanguage.value = locale.value === 'en' ? 'English' : 'Português'
+    }
+
+    onMounted(() => {
+      initObserver()
+    })
+
+    onBeforeUnmount(() => {
+      cleanupObserver()
+    })
+
+    return {
+      sections,
+      activeSection,
+      showMobileMenu,
+      currentLanguage,
+      scrollToSection,
+      handleNavigation,
+      toggleMobileMenu,
+      toggleLanguage
     }
   }
 }
 </script>
 
 <style lang="postcss">
-.tooltip {
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 5px 10px;
-  border-radius: 3px;
-  font-size: 12px;
-  white-space: nowrap;
-  z-index: 1000;
-  transform: translateX(-25%);
+nav {
+  min-height: 60px;
 }
 
 .nav-item {
-  position: relative;
+  @apply relative cursor-pointer px-3 py-2 text-neutral-300 
+         hover:text-white transition-colors duration-300
 }
 
 .nav-item::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background-color: #fff;
-  transition: all 0.3s ease;
+  @apply content-[''] absolute bottom-0 left-1/2 w-0 h-0.5 bg-white 
+         transition-all duration-300;
 }
 
 .nav-item:hover::after,
 .nav-item.active-section::after {
-  left: 0;
-  width: 100%;
+  @apply left-0 w-full;
 }
 </style>

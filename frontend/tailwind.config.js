@@ -14,4 +14,20 @@ export default {
     },
   },
   plugins: [],
+  variants: {
+    extend: {
+      display: ['responsive'],
+      transitionProperty: {
+        'width': 'width',
+      },
+      spacing: {
+        '85': '85%'
+      }
+    }
+  },
+  safelist: [
+    'w-[85vw]',
+    'max-w-[300px]',
+    '-translate-x-1/2'
+  ]
 }
