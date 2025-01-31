@@ -7,7 +7,7 @@
       <li class="cursor-pointer nav-item" :class="{ 'active-section': activeSection === 'experience' }" @click="scrollToSection('experience')">{{ $t('navbar.experience') }}</li>
       <li class="cursor-pointer nav-item" :class="{ 'active-section': activeSection === 'contact' }" @click="scrollToSection('contact')">{{ $t('navbar.contact') }}</li>
       <li class="relative cursor-pointer" @click="toggleLanguage">
-        <img src="../assets/navbar-icons/black-translate.svg" class="h-8 invert" id="translate" alt="translate img">
+        <img src="../../assets/navbar-icons/black-translate.svg" class="h-8 invert" id="translate" alt="translate img">
         <div v-if="showTooltip" ref="tooltip" class="tooltip">{{ currentLanguage }}</div>
       </li>
     </ul>

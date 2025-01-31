@@ -30,7 +30,7 @@
           :title-key="thirdCard.titleKey"
           :description-key="thirdCard.descriptionKey"
           :card-img="thirdCard.cardImg"
-          image-class="scale-[1.5] pt-5"
+          image-class="scale-[1.2] md:scale-[1.5] pt-5"
         />
       </div>
 
@@ -52,12 +52,12 @@
 <script setup>
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import AboutCard from './AboutCard.vue'
-import imgCard1 from '../assets/about-icons/Foto-de-perfil.webp'
-import imgCard2 from '../assets/about-icons/Typing.svg'
-import imgCard3 from '../assets/about-icons/Stack.svg'
-import imgCard4 from '../assets/about-icons/Studying.svg'
-import imgCard5 from '../assets/about-icons/Programming.svg'
+import AboutCard from '../About/AboutCard.vue'
+import imgCard1 from '../../assets/about-icons/Foto-de-perfil.webp'
+import imgCard2 from '../../assets/about-icons/Typing.svg'
+import imgCard3 from '../../assets/about-icons/Stack.svg'
+import imgCard4 from '../../assets/about-icons/Studying.svg'
+import imgCard5 from '../../assets/about-icons/Programming.svg'
 
 const { t } = useI18n()
 const cards = [
