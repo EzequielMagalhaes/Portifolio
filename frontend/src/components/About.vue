@@ -1,5 +1,5 @@
 <template>
-  <div class="font-roboto">
+  <div>
     <h1 
       class="text-5xl font-bold text-grey-300 mb-5 py-5"
       id="about-title"
@@ -53,11 +53,11 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import AboutCard from './AboutCard.vue'
-import imgCard1 from '../assets/Foto-de-perfil.webp'
-import imgCard2 from '../assets/Typing.svg'
-import imgCard3 from '../assets/Stack.svg'
-import imgCard4 from '../assets/Studying.svg'
-import imgCard5 from '../assets/Programming.svg'
+import imgCard1 from '../assets/about-icons/Foto-de-perfil.webp'
+import imgCard2 from '../assets/about-icons/Typing.svg'
+import imgCard3 from '../assets/about-icons/Stack.svg'
+import imgCard4 from '../assets/about-icons/Studying.svg'
+import imgCard5 from '../assets/about-icons/Programming.svg'
 
 const { t } = useI18n()
 const cards = [
