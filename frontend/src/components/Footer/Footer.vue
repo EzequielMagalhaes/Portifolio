@@ -1,37 +1,94 @@
 <template>
-  <footer class="flex justify-between items-center w-full">
-    <p class="text-neutral-500">Terms & Conditions | Privacy Policies</p>
-    <div class="flex gap-2">
-        <button @click="redirectLinkedin" id="instagram-link">
-            <img src="../../assets/footer-icons/linkedin-logo.svg" class="h-11 filter grayscale hover:filter-none rounded-full cursor-pointer" alt="linkedin-logo">
-        </button>
-        <button @click="redirectGithub" id="instagram-link">
-            <img src="../../assets/footer-icons/github-logo.svg" class="h-9 bg-neutral-700 filter grayscale hover:filter-none rounded-full hover:bg-neutral-300 cursor-pointer" alt="github-logo">
-        </button>
-        <button @click="redirectInsta" id="instagram-link">
-            <img src="../../assets/footer-icons/instagram-logo.svg" class="h-11 filter grayscale hover:filter-none rounded-full cursor-pointer" alt="instagram-logo">
-        </button>
-        </div>
-    <p class="text-neutral-500">&copy; 2024 Ezequiel All Rights Reserved</p>
+  <footer class="footer">
+    <div class="footer-content">
+      <nav class="legal-links">
+        <a href="/terms" class="legal-link">{{ $t('footer.terms') }}</a>
+        <span class="divider">|</span>
+        <a href="/privacy" class="legal-link">{{ $t('footer.privacy') }}</a>
+      </nav>
+      
+      <div class="social-links">
+        <SocialLink 
+          v-for="(link, index) in socialLinks"
+          :key="index"
+          :href="link.url"
+          :icon="link.icon"
+          :alt="link.alt"
+          :class="link.specialClass"
+        />
+      </div>
+      
+      <p class="copyright">
+        &copy; {{ currentYear }} {{ $t('footer.copyright') }}
+      </p>
+    </div>
   </footer>
 </template>
 
 <script>
+import SocialLink from './SocialLink.vue'
+import linkedinIcon from '../../assets/footer-icons/linkedin-logo.svg'
+import githubIcon from '../../assets/footer-icons/github-logo.svg'
+import instagramIcon from '../../assets/footer-icons/instagram-logo.svg'
+
 export default {
-    methods: {
-        redirectLinkedin() {
-            window.open('https://www.linkedin.com/in/ezequiel-magalhaes-dev/','_blank');
+  components: { SocialLink },
+  data() {
+    return {
+      currentYear: new Date().getFullYear(),
+      socialLinks: [
+        { 
+          url: 'https://www.linkedin.com/in/ezequiel-magalhaes-dev/',
+          icon: linkedinIcon,
+          alt: 'LinkedIn profile'
         },
-        redirectGithub() {
-            window.open('https://github.com/EzequielMagalhaes','_blank');
+        { 
+          url: 'https://github.com/EzequielMagalhaes',
+          icon: githubIcon,
+          alt: 'GitHub profile',
+          specialClass: 'github-link'
         },
-        redirectInsta() {
-            window.open('https://www.instagram.com/zekiell._/','_blank');
+        { 
+          url: 'https://www.instagram.com/zekiell._/',
+          icon: instagramIcon,
+          alt: 'Instagram profile'
         }
+      ]
     }
+  }
 }
 </script>
 
-<style>
+<style lang="postcss">
+.footer {
+  @apply bg-black py-6 px-4 md:px-8;
+}
 
+.footer-content {
+  @apply max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4;
+}
+
+.legal-links {
+  @apply flex items-center gap-3 order-1 md:order-none;
+}
+
+.legal-link {
+  @apply text-neutral-400 hover:text-neutral-300 transition-colors text-sm;
+}
+
+.divider {
+  @apply text-neutral-500;
+}
+
+.social-links {
+  @apply flex gap-3 order-3 md:order-none;
+}
+
+.copyright {
+  @apply text-neutral-500 text-sm order-2 md:order-none;
+}
+
+.github-link {
+  @apply bg-neutral-700 hover:bg-neutral-300;
+}
 </style>
