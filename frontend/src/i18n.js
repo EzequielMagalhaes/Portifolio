@@ -133,6 +133,13 @@ const messages = {
         },
         successMessage: 'Your message has been sent successfully. I will get back to you as soon as possible.',
       }
+    },
+
+    // FOOTER //
+    footer:{
+      terms:'Terms & Conditions',
+      privacy:'Privacy Policies',
+      copyright: 'Ezequiel All Rights Reserved',
     }
   },
   
@@ -253,6 +260,13 @@ const messages = {
         },
         successMessage: 'Sua mensagem foi enviada com sucesso. Vou te responder assim que possível.',
       }
+    },
+
+    // FOOTER //
+    footer:{
+      terms:'Termos e condições',
+      privacy:'Políticas de privacidade',
+      copyright	:'Todos os direitos reservados - Ezequiel',
     }
   },
 };
