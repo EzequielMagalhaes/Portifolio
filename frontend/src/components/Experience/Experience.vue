@@ -1,15 +1,15 @@
 <template>
-  <section class="mx-auto px-4 py-8 md:px-8 max-w-[1200px]">
+  <section class="mx-auto px-4 py-8 md:px-8 max-w-[1400px]">
     <h1 class="text-4xl md:text-5xl font-bold text-neutral-300 mb-8">
       {{ $t('experience.title') }}
     </h1>
     
-    <div class="relative grid grid-cols-1 gap-8 md:gap-16">
-      <div 
-        v-for="(experience, index) in experiences"
-        :key="experience.id"
-        class="relative flex flex-col md:flex-row gap-6 md:gap-10"
-      >
+    <div class="relative grid grid-cols-1 gap-8 md:gap-18 -mx-4 md:-mx-8 w-[calc(100%+32px)] md:w-[calc(100%+64px)]">
+    <div 
+      v-for="(experience, index) in experiences"
+      :key="experience.id"
+      class="relative flex flex-col md:flex-row gap-6 md:gap-10 w-full" 
+    >
         <!-- Timeline Line -->
         <div 
           v-if="index < experiences.length - 1"
@@ -19,12 +19,12 @@
 
         <!-- Experience Card -->
         <article 
-          class="flex flex-col md:flex-row gap-6 p-6 bg-neutral-900 rounded-xl shadow-lg items-center relative z-1 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-md md:p-8 md:gap-8 md:min-h-[180px]"
+          class="w-full flex flex-col md:flex-row gap-6 p-6 bg-neutral-900 rounded-xl shadow-lg items-center relative z-1 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-md md:px-8 md:gap-8 md:min-h-[180px]"
         >
           <img 
             :src="experience.logo" 
             :alt="$t(`experience.logoAlt.${experience.altText}`)"
-            :class="['h-28 w-28 object-contain p-2 bg-neutral-800 rounded-lg self-center md:h-32 md:w-32', { 'w-36 md:w-40': experience.wideLogo }]"
+            :class="['h-28 w-28 object-contain rounded-2xl self-center md:h-40 md:w-40']"
           />
 
           <div class="flex-1 flex flex-col gap-4 md:pr-8">
@@ -74,7 +74,7 @@ const experienceLogos = [experienceLogo1, experienceLogo2, experienceLogo3]
 const experienceConfig = [
   {
     id: 1,
-    wideLogo: true,
+    wideLogo: false,
     altText: 'tiSupport',
     workEnterprise: 'work1.workEnterprise',
     workName: 'work1.workName',
@@ -95,7 +95,7 @@ const experienceConfig = [
   },
   {
     id: 2,
-    wideLogo: true,
+    wideLogo: false,
     altText: 'ferragensPontual',
     workEnterprise: 'work2.workEnterprise',
     workName: 'work2.workName',
@@ -111,7 +111,7 @@ const experienceConfig = [
   },
   {
     id: 3,
-    wideLogo: true,
+    wideLogo: false,
     altText: 'pgdf',
     workEnterprise: 'work3.workEnterprise',
     workName: 'work3.workName',
@@ -137,3 +137,4 @@ export default {
   }
 }
 </script>
+
