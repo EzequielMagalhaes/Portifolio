@@ -91,7 +91,17 @@ const messages = {
         workStartDate: 'Jul 2023',
         workEndDate: 'Nov 2024',
         description: 'Provided N2 technical support, Help Desk and remote customer support. Responsible for maintenance and assembly of computers, networks, and servers. Supported ERP systems (Movere), installed and maintained network and CCTV infrastructure, performed printer maintenance, and configured PABX telephony systems.',
-        tasks: '• N2 technical support; • Help Desk / Remote customer support; • Maintenance and assembly of computers; • Maintenance of networks and servers; • Support with ERP systems (Movere); • Installation and maintenance of network and CCTV infrastructure; • Printer maintenance; • Configuration of PABX systems - Telephony.'
+        taskLabel: 'Responsibilities',
+        tasks:{
+          task1: '• N2 technical support',
+          task2: '• Help Desk / Remote customer support',
+          task3: '• Maintenance and assembly of computers', 
+          task4: '• Maintenance of networks and servers',
+          task5: '• Support with ERP systems (Movere)',
+          task6: '• Installation and maintenance of network and CCTV infrastructure',
+          task7: '• Printer maintenance',
+          task8: '• Configuration of PABX systems - Telephony.'
+        }
       },
       work2: {
         workEnterprise: 'Ferragens Pontual',
@@ -99,7 +109,12 @@ const messages = {
         workStartDate: 'Jun 2021',
         workEndDate: 'Dez 2022',
         description: 'Retail sale of hardware and construction materials, contact and customer service, teamwork. Managed inventory, assisted in product displays, and provided technical advice to customers regarding product selection and usage. Developed strong customer relationships and contributed to sales growth through excellent service and product knowledge.',
-        tasks: '• Retail sale of hardware and construction materials; • Contact and customer service; • Teamwork;'
+        taskLabel: 'Responsibilities',
+        tasks: {
+          task1: '• Retail sale of hardware and construction materials',
+          task2: '• Contact and customer service',
+          task3: '• Teamwork.'
+        }
       },
       work3: {
         workEnterprise: 'Procuradoria-Geral do Distrito Federal',
@@ -107,7 +122,11 @@ const messages = {
         workStartDate: 'Sep 2019',
         workEndDate: 'Dez 2020',
         description: 'Conducted legal research, provided administrative support, assisted with case preparation, and maintained databases of legal cases. I have developed strong analytical and problem-solving skills through extensive legal research and document review.',
-        tasks: '• Assistance in the transport of legal and administrative processes; • Processing of internal legal proceedings;'
+        taskLabel: 'Responsibilities',
+        tasks:{
+          task1: '• Assistance in the transport of legal and administrative processes',
+          task2: '• Processing of internal legal proceedings.'
+        }
       },
     },
     
@@ -218,7 +237,17 @@ const messages = {
         workStartDate: 'Jul 2023',
         workEndDate: 'Nov 2024',
         description: 'Forneci suporte técnico N2, Help Desk e suporte remoto ao cliente. Responsável pela manutenção e montagem de computadores, redes e servidores. Suportei sistemas ERP (Movere), instalei e mantive infraestrutura de rede e CCTV, realizei manutenção de impressoras e configurei sistemas de telefonia PABX.',
-        tasks: '• Suporte técnico N2. • Help Desk / Suporte remoto de clientes. • Manutenção e montagem de computadores. • Manutenção de redes e servidores. • Suporte com sistemas ERP (Movere). • Instalação e manutenção de infraestrutura de rede e CFTV. • Manutenção de impressoras. • Configuração de sistemas PABX - Telefonia.'
+        taskLabel: 'Tarefas',
+        tasks:{
+          task1: '• Suporte tecnico N2;',
+          task2: '• Help Desk / Suporte remoto ao cliente;',
+          task3: '• Manutenção e montagem de computadores;',
+          task4: '• Manutenção e montagem de redes e servidores;',
+          task5: '• Manutenção de sistemas ERP (Movere);',
+          task6: '• Instalação e manutenção de infraestrutura de rede e CFTV;',
+          task7: '• Manutenção de impressoras;',
+          task8: '• Configuração de sistemas de telefonia PABX;'
+         }
       },
       work2: {
         workEnterprise: 'Ferragens Pontual',
@@ -226,7 +255,12 @@ const messages = {
         workStartDate: 'Jun 2021',
         workEndDate: 'Dez 2022',
         description: 'Venda de varejo de ferragens e materiais de construção, contato e atendimento ao cliente, trabalho em equipe. Gerenciou inventário, auxiliou na exibição de produtos e forneceu aconselhamento técnico aos clientes sobre a seleção e uso de produtos. Desenvolveu fortes relacionamentos com os clientes e contribuiu para o crescimento das vendas através de um excelente serviço e conhecimento dos produtos.',
-        tasks: '• Venda de varejo de ferragens e materiais de construção; • Contato e atendimento ao cliente; • Trabalho em equipe;'
+        taskLabel: 'Tarefas',
+        tasks:{
+          task1: '• Venda de varejo de ferragens e materiais de construção;',
+          task2: '• Contato e atendimento ao cliente;',
+          task3: '• Trabalho em equipe.'
+        }
       },
       work3: {
         workEnterprise: 'Procuradoria-Geral do Distrito Federal',
@@ -234,7 +268,11 @@ const messages = {
         workStartDate: 'Set 2019',
         workEndDate: 'Dez 2020',
         description: 'Conduzi pesquisas jurídicas, forneci suporte administrativo, auxiliei na preparação de casos e mantive bancos de dados de casos jurídicos. Desenvolvi fortes habilidades analíticas e de resolução de problemas por meio de extensas pesquisas jurídicas e revisão de documentos.',
-        tasks: '• Assistência no transporte de processos jurídicos e administrativos; • Processamento de processos jurídicos internos;'
+        taskLabel: 'Tarefas',
+        tasks: {
+          task1: '• Assistência no transporte de processos jurídicos e administrativos',
+          task2: '• Processamento de processos jurídicos internos;'
+        }
       },
     },
     
