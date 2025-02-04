@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full md:w-[800px] max-w-[95vw] h-[630px] md:h-[650px] sm:h-[610px] bg-neutral-700 rounded-3xl">
+  <div class="relative w-full md:w-[800px] max-w-[95vw] h-[640px] md:h-[670px] sm:h-[620px] bg-neutral-700 rounded-3xl">
     <!-- DOTS -->
     <div class="absolute top-4 left-6 flex gap-2 items-center"> 
       <div class="w-3 h-3 rounded-full bg-red-400 shadow-lg shadow-red-glow"></div>

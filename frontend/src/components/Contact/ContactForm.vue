@@ -3,21 +3,23 @@
     <div class="flex flex-col gap-2 my-1 w-full">
       <label class="text-neutral-500">{{ $t('contact.fullName') }}</label>
       <input
+        id="name"
         v-model="form.name"
         type="text"
         :placeholder="$t('contact.placeholder.name')"
-        class="w-full border-b border-neutral-500 bg-neutral-700 p-1 rounded-lg"
+        class="w-full border-b border-neutral-500 bg-neutral-700 p-1 rounded-lg pl-10"
         required
       >
-    </div>
+      </div>
 
     <div class="flex flex-col gap-2 my-1 w-full">
       <label class="text-neutral-500">{{ $t('contact.emailAdd') }}</label>
       <input
+        id="email"
         v-model="form.email"
         type="email"
         :placeholder="$t('contact.placeholder.email')"
-        class="w-full border-b border-neutral-500 bg-neutral-700 p-1 rounded-lg"
+        class="w-full border-b border-neutral-500 bg-neutral-700 p-1 rounded-lg pl-10"
         :class="{ 'border-red-500': errors.email }"
         required
       >
@@ -27,6 +29,7 @@
     <div class="flex flex-col gap-2 my-1 w-full">
       <label class="text-neutral-500">{{ $t('contact.yourMessage') }}</label>
       <textarea
+        id="text"
         v-model="form.message"
         maxlength="500"
         :placeholder="$t('contact.placeholder.message')"
@@ -114,6 +117,31 @@ export default {
 .input-field {
   @apply w-full border-b border-neutral-500 bg-neutral-700 p-1 rounded-lg
          focus:outline-none focus:border-neutral-300 transition-colors;
+}
+
+#email {
+  background-image: url('../../assets/contact-icons/email.svg');
+  background-repeat: no-repeat;
+  background-size: 20px;
+  background-position: 10px center;
+  padding-left: 40px;
+}
+
+#name {
+  background-image: url('../../assets/contact-icons/name.svg');
+  background-repeat: no-repeat;
+  background-size: 20px;
+  background-position: 10px center;
+  padding-left: 40px;
+}
+
+#text{
+  background-image: url('../../assets/contact-icons/text.svg');
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: 10px 10px;
+  padding-left: 40px;
+  padding-top: 8px;
 }
 </style>
 
