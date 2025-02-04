@@ -18,7 +18,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
           <AboutCard 
             v-for="card in firstTwoCards"
-            :key="card.key"
+            :key="card.cardKey"
             :title-key="card.titleKey"
             :description-key="card.descriptionKey"
             :card-img="card.cardImg"
@@ -38,7 +38,7 @@
       <div class="lg:w-1/3 flex flex-col gap-5">
         <AboutCard 
           v-for="card in lastTwoCards"
-          :key="card.key"
+          :key="card.cardKey"
           :title-key="card.titleKey"
           :description-key="card.descriptionKey"
           :card-img="card.cardImg"
@@ -62,38 +62,37 @@ import imgCard5 from '../../assets/about-icons/Programming.svg'
 const { t } = useI18n()
 const cards = [
   {
-    key: 'introduction',
+    cardKey: 'introduction',
     titleKey: 'cardTitles.introduction',
     descriptionKey: 'about.cards.introduction.description',
     cardImg: imgCard1,
   },
   {
-    key: 'experience',
+    cardKey: 'experience',
     titleKey: 'cardTitles.experience',
     descriptionKey: 'about.cards.experience.description',
     cardImg: imgCard2,
   },
   {
-    key: 'techStack',
+    cardKey: 'techStack',
     titleKey: 'cardTitles.techStack',
     descriptionKey: 'about.cards.techStack.description',
     cardImg: imgCard3,
   },
   {
-    key: 'education',
+    cardKey: 'education',
     titleKey: 'cardTitles.education',
     descriptionKey: 'about.cards.education.description',
     cardImg: imgCard4,
   },
   {
-    key: 'knowledge',
+    cardKey: 'knowledge',
     titleKey: 'cardTitles.knowledge',
     descriptionKey: 'about.cards.knowledge.description',
     cardImg: imgCard5,
   }
 ]
 
-// Rest of the component remains the same
 const firstTwoCards = computed(() => cards.slice(0, 2))
 const thirdCard = computed(() => cards[2])
 const lastTwoCards = computed(() => cards.slice(3))
