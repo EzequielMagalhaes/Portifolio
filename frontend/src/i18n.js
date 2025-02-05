@@ -82,6 +82,11 @@ const messages = {
     // EXPERIENCE //
     experience: {
       title: 'My work experience',
+      logoAlt:{
+        tiSupport: 'PLT Empreendimentos e Participações Empresariais LTDA',
+        ferragensPontual: 'Ferragens Pontual',
+        pgdf: 'Procuradoria-Geral do Distrito Federal'
+      },
       work1: {
         workEnterprise: 'PLT Empreendimentos e Participações Empresariais LTDA',
         workName: 'Technical support operator',
@@ -226,6 +231,11 @@ const messages = {
     // EXPERIENCE //
     experience: {
       title: 'Minha experiência de trabalho',
+      logoAlt:{
+        tiSupport: 'PLT Empreendimentos e Participações Empresariais LTDA',
+        ferragensPontual: 'Ferragens Pontual',
+        pgdf: 'Procuradoria-Geral do Distrito Federal'
+      },
       work1: {
         workEnterprise: 'PLT Empreendimentos e Participações Empresariais LTDA',
         workName: 'Operador de suporte técnico',
