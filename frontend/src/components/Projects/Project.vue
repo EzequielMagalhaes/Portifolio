@@ -18,9 +18,7 @@
                 <p class="text-lg text-neutral-500">{{ $t(currentProject.subdescription) }}</p>
                 <div class="flex justify-between items-center w-full">
                     <!-- STACK -->
-                    <div class="flex items-start align-middle stack-container">
-                        <img v-for="(tech, index) in currentProject.stack" :key="index" :src="getStackIcon(tech)" :class="getStackClass(tech)" class="bg-neutral-900 p-1 rounded-lg stack-item filter grayscale hover:filter-none" :alt="tech">
-                    </div>
+                    <TechStack :stack="currentProject.stack" />
                     <!-- END STACK -->
                     <div class="flex gap-2 items-center text-xl">
                         <button @click="redirect" @mouseenter="showWhiteArrow('site')" @mouseleave="hideWhiteArrow('site')" id="goto-site" class="text-black bg-neutral-300 p-2 rounded-full flex items-center gap-2 hover:bg-black hover:text-neutral-300">
@@ -66,22 +64,12 @@ import { computePosition, shift, flip, offset } from "@floating-ui/dom";
 import todoLogo from '../../assets/project-icons/project-logo.png';
 import kanbanLogo from '../../assets/project-icons/kanban-logo.png';
 import rpsLogo from '../../assets/project-icons/rock-paper-scissor-logo.png';
-import htmlIcon from '../../assets/stack-icons/html-icon.svg';
-import cssIcon from '../../assets/stack-icons/css-icon.svg';
-import viteIcon from '../../assets/stack-icons/vitejs-icon.svg';
-import nodeJsIcon from '../../assets/stack-icons/nodejs-icon.svg';
-import vueIcon from '../../assets/stack-icons/vuejs-icon.svg';
-import reactIcon from '../../assets/stack-icons/react-icon.svg';
-import vuetifyIcon from '../../assets/stack-icons/vuetify-icon.svg';
-import javascriptIcon from '../../assets/stack-icons/javascript-icon.svg';
-import typeScriptIcon from '../../assets/stack-icons/typescript-icon.svg';
-import tailwindIcon from '../../assets/stack-icons/tailwindcss-icon.svg';
-import dockerIcon from '../../assets/stack-icons/docker-icon.svg';
-import chakraIcon from '../../assets/stack-icons/chakra-icon.svg';
-import jestIcon from '../../assets/stack-icons/jest-icon.svg';
-import gitIcon from '../../assets/stack-icons/git-icon.svg';
+import TechStack from './TechStack.vue';
 
 export default {
+  components: {
+    TechStack
+  },
   data(){
     return{
       projects: [
@@ -124,43 +112,6 @@ export default {
     }
   },
   methods: {
-    getStackIcon(tech) {
-      switch (tech) {
-        case 'HTML':
-          return htmlIcon;
-        case 'CSS':
-          return cssIcon;
-        case 'Vite':
-          return viteIcon;
-        case 'Node.js':
-          return nodeJsIcon;
-        case 'React.js':
-          return reactIcon;
-        case 'Vue.js':
-          return vueIcon;
-        case 'Vuetify':
-          return vuetifyIcon;
-        case 'JavaScript':
-          return javascriptIcon;
-        case 'Typescript':
-          return typeScriptIcon;
-        case 'Tailwind CSS':
-          return tailwindIcon;
-        case 'Docker':
-          return dockerIcon;
-        case 'Chakra-ui':
-          return chakraIcon;
-        case 'Jest': 
-          return jestIcon;
-        case 'Git':
-          return gitIcon;
-        default:
-          return '';
-      }
-    },
-    getStackClass(tech) {
-      return tech === 'Docker' || tech === 'Chakra-ui' ? 'h-10 scale-[1.2]' : 'h-10';
-    },
     getCurrentProjectClass(logo) {
       return logo === kanbanLogo ? 'h-20 p-2' : 'h-20';
     },
@@ -313,20 +264,6 @@ export default {
 </script>
 
 <style scoped>
-.stack-container {
-  position: relative;
-}
-
-.stack-item {
-  transition: transform 0.3s, margin 0.3s;
-  position: relative;
-}
-
-.stack-item:hover {
-  transform: scale(1.7);
-  margin: 0 10px;
-}
-
 .tooltip {
   transition: opacity 0.5s ease-in-out;
   opacity: 0;
