@@ -1,6 +1,6 @@
 <template>
   <div 
-    class="rounded-xl p-5 bg-neutral-900 h-full about-card"
+    class="rounded-xl p-5 bg-neutral-900 h-full flex flex-col justify-between about-card"
     role="region"
     :aria-label="t(titleKey)"
     tabindex="0"
@@ -26,6 +26,10 @@
     <p class="sr-only">
       {{ t('about.aria.cardDescription', { title: t(titleKey) }) }}
     </p>
+
+    <div class="mt-auto">
+      <slot></slot>
+    </div>
   </div>
 </template>
 

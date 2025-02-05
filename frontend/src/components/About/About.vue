@@ -31,7 +31,9 @@
           :description-key="thirdCard.descriptionKey"
           :card-img="thirdCard.cardImg"
           image-class="scale-[1.2] md:scale-[1.5] pt-5"
-        />
+        >
+          <TechStack :stack="['Java' , 'SpringBoot' , 'Vue.js' , 'JavaScript' , 'Tailwind CSS' , 'Vite' , 'PostgreSQL']"/>
+        </AboutCard>
       </div>
 
       <!-- Right Column -->
@@ -53,6 +55,7 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import AboutCard from '../About/AboutCard.vue'
+import TechStack from '../Projects/TechStack.vue'
 import imgCard1 from '../../assets/about-icons/Foto-de-perfil.webp'
 import imgCard2 from '../../assets/about-icons/Typing.svg'
 import imgCard3 from '../../assets/about-icons/Stack.svg'
@@ -97,3 +100,4 @@ const firstTwoCards = computed(() => cards.slice(0, 2))
 const thirdCard = computed(() => cards[2])
 const lastTwoCards = computed(() => cards.slice(3))
 </script>
+
