@@ -1,23 +1,23 @@
 <template>
-  <div class="flex items-start align-middle stack-container">
+  <div class="flex items-start align-middle relative flex gap-2">
     <div 
       v-for="(tech, index) in stack" 
       :key="index"
-      class="stack-item-wrapper"
+      class="relative transition-transform duration-300 ease hover:scale-[1.7] hover:m-0.5"
       @mouseenter="showTooltip(index)"
       @mouseleave="hideTooltip(index)"
     >
       <img 
         :src="getStackIcon(tech)" 
         :class="getStackClass(tech)"
-        class="tech-icon"
+        class="bg-neutral-900 p-1 rounded-lg filter grayscale transition-all duration-300 hover:filter-none h-[2.3rem]"
         :alt="tech"
       >
       <transition name="fade">
         <div 
           v-if="activeTooltip === index"
           ref="tooltip"
-          class="tooltip"
+          class="absolute bg-neutral-800 text-neutral-200 px-1 py-0.5 rounded text-xs whitespace-nowrap scale-90 left-1/2 -translate-x-1/2 bottom-full mb-2 max-w-24 overflow-hidden text-ellipsis pointer-events-none z-50"
         >
           {{ tech }}
         </div>
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 import { computePosition, offset, flip, shift } from '@floating-ui/dom'
 import { useTechIcons } from './composables/useTechIcons'
 
@@ -62,7 +62,7 @@ export default {
         computePosition(icon, tooltip, {
           placement: 'top',
           middleware: [
-            offset(10),
+            offset(5),
             flip(),
             shift({ padding: 5 }),
           ],
@@ -95,40 +95,7 @@ export default {
 }
 </script>
 
-<style lang="postcss">
-.stack-container {
-  position: relative;
-  display: flex;
-  gap: 0.5rem;
-}
-
-.stack-item-wrapper {
-  position: relative;
-  transition: transform 0.3s ease;
-}
-
-.tech-icon {
-  @apply bg-neutral-900 p-1 rounded-lg grayscale transition-all duration-300;
-  height: 2.3rem;
-}
-
-.tech-icon:hover {
-  @apply grayscale-0;
-}
-
-.stack-item-wrapper:hover {
-  transform: scale(1.7);
-  margin: 0 0.5rem;
-  z-index: 10;
-}
-
-.tooltip {
-  @apply absolute bg-neutral-800 text-neutral-200 px-2 py-1 rounded text-sm whitespace-nowrap;
-  transform: translateX(-50%);
-  pointer-events: none;
-  z-index: 100;
-}
-
+<style scoped>
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.2s ease;
