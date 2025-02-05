@@ -2,29 +2,25 @@ import { createI18n } from 'vue-i18n';
 
 const cardTitles = {
   en: {
-    cardTitles: {
-      introduction: "Hi I'm Ezequiel",
-      experience: "Professional experience",
-      techStack: "Tech stack",
-      education: "Education",
-      knowledge: "General knowledge"
-    }
+    introduction: "Hi I'm Ezequiel",
+    experience: "Professional experience",
+    techStack: "Tech stack",
+    education: "Education",
+    knowledge: "General knowledge"
   },
   pt: {
-    cardTitles: {
-      introduction: "Olá, eu sou o Ezequiel",
-      experience: "Experiência Profissional",
-      techStack: "Tecnologias",
-      education: "Educação",
-      knowledge: "Conhecimento geral"
-    }
+    introduction: "Olá, eu sou o Ezequiel",
+    experience: "Experiência Profissional",
+    techStack: "Tecnologias",
+    education: "Educação",
+    knowledge: "Conhecimento geral"
   }
 };
 
 const messages = {
   en: {
-    ...cardTitles.en,
-    title: ' <PORTIFOLIO/> ',
+    title: '<Portfolio/>',
+    // NAVBAR //
     navbar: {
       about: 'About',
       projects: 'Projects',
@@ -62,7 +58,7 @@ const messages = {
         }
       }
     },
-
+    
     // PROJECTS //
     projects: {
       title: 'My Projects',
@@ -82,15 +78,10 @@ const messages = {
         subdescription: 'This project was built for a technical test where the technologies used were Vue.js and Tailwind CSS. It is a simple to-do list app that allows users to add, edit, and delete tasks. The application is fully interactive and can be accessed alongside.'
       },
     },
-    
+
     // EXPERIENCE //
     experience: {
       title: 'My work experience',
-      logoAlt: {
-        tiSupport: 'tiSupport logo',
-        ferragensPontual: 'Ferragens Pontual logo',
-        pgdf: 'Procuradoria-Geral do Distrito Federal logo',
-      },
       work1: {
         workEnterprise: 'PLT Empreendimentos e Participações Empresariais LTDA',
         workName: 'Technical support operator',
@@ -135,7 +126,7 @@ const messages = {
         }
       },
     },
-
+    
     // CONTACT //
     contact: {
       title: 'Contact me',
@@ -148,7 +139,7 @@ const messages = {
       sendBtn: 'Send',
       placeholder: {
         name: 'Your Name',
-        email: 'your-email@email.com',
+        email: 'your-email@mail.com',
         message: 'Enter text here...'
       },
       response: {
@@ -167,22 +158,24 @@ const messages = {
       copyright: 'Ezequiel All Rights Reserved',
     }
   },
+  
+  //  ||  PORTUGUÊS  ||  //
   pt: {
-    ...cardTitles.pt,
-    title: ' <PORTIFÓLIO/> ',
+    title: '<Portfólio/>',
+    // NAVBAR //
     navbar: {
       about: 'Sobre',
       projects: 'Projetos',
       experience: 'Experiência',
       contact: 'Contato',
     },
-
+    
     // HEADER //
     header: {
       title: 'Olá eu sou Ezequiel',
       typeArray: ['DESENVOLVEDOR DE SOFTWARE', 'DESENVOLVEDOR WEB']
     },
-
+    
     // ABOUT //
     about: {
       title: 'Sobre mim',
@@ -195,19 +188,21 @@ const messages = {
         },
         experience: {
           description: "Adquiri experiência valiosa trabalhando em projetos de suporte técnico, manutenção de sistemas e desenvolvimento de software, preparando-me para enfrentar diversos desafios na indústria de tecnologia."
+          
         },
         techStack: {
           description: "trabalhando nisso..."
+          
         },
         education: {
-          description: "Atualmente estou estudando Ciência da Computação, construindo uma base sólida em programação e design de sistemas. Além disso, realizei diversos cursos certificados voltados para a área de desenvolvimento de software. E atualmente estou estudando mais sobre pipelines CI/CD e conteinerização Docker para implementar esses recursos em meus projetos futuros"
+          description: "Atualmente estou estudando Ciência da Computação, construindo uma base sólida em programação e design de sistemas. Além disso, realizei diversos cursos certificados voltados para a área de desenvolvimento de software. E atualmente estou estudando mais sobre pipelines CI/CD e conteinerização Docker para implementar esses recursos em meus projetos futuros."
         },
         knowledge: {
           description: "Proficiente em vários paradigmas de programação com experiência prática em Java, Python e C#. Hábil em sistemas de banco de dados, incluindo soluções relacionais (MySQL) e NoSQL (MongoDB), também hábil em fluxos de trabalho Git."
         }
       }
     },
-
+    
     // PROJECTS //
     projects: {
       title: 'Meus Projetos',
@@ -227,7 +222,7 @@ const messages = {
         subdescription: 'Este projeto foi construído para um teste técnico onde as tecnologias utilizadas eram Vue.js e Tailwind CSS. É um aplicativo simples de lista de tarefas que permite aos usuários adicionar, editar e excluir tarefas. O aplicativo é totalmente interativo e pode ser acessado ao lado.'
       }
     },
-
+    
     // EXPERIENCE //
     experience: {
       title: 'Minha experiência de trabalho',
@@ -275,7 +270,7 @@ const messages = {
         }
       },
     },
-
+    
     // CONTACT //
     contact: {
       title: 'Entre em contato comigo',
@@ -288,7 +283,7 @@ const messages = {
       sendBtn: 'Enviar',
       placeholder: {
         name: 'Seu Nome',
-        email: 'seu-email@email.com',
+        email: 'seu-email@mail.com',
         message: 'Insira o texto aqui...'
       },
       response: {
@@ -304,14 +299,16 @@ const messages = {
     footer:{
       terms:'Termos e condições',
       privacy:'Políticas de privacidade',
-      copyright: 'Todos os direitos reservados - Ezequiel',
+      copyright	:'Todos os direitos reservados - Ezequiel',
     }
-  }
+  },
 };
+messages.en.cardTitles = cardTitles.en;
+messages.pt.cardTitles = cardTitles.pt;
 
 const i18n = createI18n({
   legacy: false,
-  locale: 'en',
+  locale: 'en', // idioma padrão
   messages,
 });
 
