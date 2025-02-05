@@ -18,7 +18,7 @@
       </h1>
     </div>
     <p 
-      class="text-neutral-500 text-lg"
+      class="text-neutral-500 text-lg mb-2"
       :id="'desc-' + key"
     >
       {{ t(descriptionKey) }}

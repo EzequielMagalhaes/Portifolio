@@ -48,7 +48,7 @@ const messages = {
           description: "I\'ve gained valuable experience working on projects in technical support, system maintenance, and software development, preparing me to tackle diverse challenges in the tech industry."
         },
         techStack: {
-          description: "working on it"
+          description: "This portfolio is a comprehensive representation of my skills and knowledge in software development. It brings together my practical experiences, highlighting my proficiency in various programming languages, frameworks, and libraries. The application was developed following best practices in architecture and design, ensuring modularity, scalability, and maintainability. The frontend was built with Vue.js, using Vue Router for navigation and Tailwind CSS for styling, ensuring a dynamic and responsive interface. The backend was developed with Spring Boot, structured in a RESTful API-based architecture to facilitate communication between services. The technologies used to build this portfolio are listed below."
         },
         education: {
           description: "I am currently studying Computer Science, building a solid foundation in programming and systems design. In addition, I took several certified courses focused on the area of software development area. And I'm currently studying more about CI/CD pipelines and Docker containerization to implement these features in my future projects"
@@ -196,8 +196,7 @@ const messages = {
           
         },
         techStack: {
-          description: "trabalhando nisso..."
-          
+          description: "Este portfólio é uma representação abrangente das minhas habilidades e conhecimentos em desenvolvimento de software. Ele reúne minhas experiências práticas, destacando minha proficiência em diversas linguagens de programação, frameworks e bibliotecas. A aplicação foi desenvolvida seguindo boas práticas de arquitetura e design, garantindo modularidade, escalabilidade e manutenibilidade.O frontend foi construído com Vue.js, utilizando Vue Router para a navegação e Tailwind CSS para estilização, garantindo uma interface dinâmica e responsiva. O backend, por sua vez, foi desenvolvido com Spring Boot, estruturado em uma arquitetura baseada em APIs RESTful para facilitar a comunicação entre os serviços. As tecnologias utilizadas para a construção deste portfólio estão listadas abaixo."
         },
         education: {
           description: "Atualmente estou estudando Ciência da Computação, construindo uma base sólida em programação e design de sistemas. Além disso, realizei diversos cursos certificados voltados para a área de desenvolvimento de software. E atualmente estou estudando mais sobre pipelines CI/CD e conteinerização Docker para implementar esses recursos em meus projetos futuros."
