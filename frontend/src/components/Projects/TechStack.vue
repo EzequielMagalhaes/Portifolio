@@ -1,96 +1,141 @@
 <template>
-    <div class="flex items-start align-middle stack-container">
-        <img v-for="(tech, index) in stack" :key="index" :src="getStackIcon(tech)" :class="getStackClass(tech)" class="bg-neutral-900 p-1 rounded-lg stack-item filter grayscale hover:filter-none transition duration-300" :alt="tech">
+  <div class="flex items-start align-middle stack-container">
+    <div 
+      v-for="(tech, index) in stack" 
+      :key="index"
+      class="stack-item-wrapper"
+      @mouseenter="showTooltip(index)"
+      @mouseleave="hideTooltip(index)"
+    >
+      <img 
+        :src="getStackIcon(tech)" 
+        :class="getStackClass(tech)"
+        class="tech-icon"
+        :alt="tech"
+      >
+      <transition name="fade">
+        <div 
+          v-if="activeTooltip === index"
+          ref="tooltip"
+          class="tooltip"
+        >
+          {{ tech }}
+        </div>
+      </transition>
     </div>
+  </div>
 </template>
 
 <script>
-import htmlIcon from '../../assets/stack-icons/html-icon.svg';
-import cssIcon from '../../assets/stack-icons/css-icon.svg';
-import viteIcon from '../../assets/stack-icons/vitejs-icon.svg';
-import nodeJsIcon from '../../assets/stack-icons/nodejs-icon.svg';
-import vueIcon from '../../assets/stack-icons/vuejs-icon.svg';
-import reactIcon from '../../assets/stack-icons/react-icon.svg';
-import vuetifyIcon from '../../assets/stack-icons/vuetify-icon.svg';
-import javascriptIcon from '../../assets/stack-icons/javascript-icon.svg';
-import typeScriptIcon from '../../assets/stack-icons/typescript-icon.svg';
-import tailwindIcon from '../../assets/stack-icons/tailwindcss-icon.svg';
-import javaIcon from '../../assets/stack-icons/java-icon.svg';
-import springIcon from '../../assets/stack-icons/spring-icon.svg';
-import postgreIcon from '../../assets/stack-icons/postgresql-icon.svg';
-import dockerIcon from '../../assets/stack-icons/docker-icon.svg';
-import chakraIcon from '../../assets/stack-icons/chakra-icon.svg';
-import jestIcon from '../../assets/stack-icons/jest-icon.svg';
-import gitIcon from '../../assets/stack-icons/git-icon.svg';
+import { ref, onMounted, onUnmounted } from 'vue'
+import { computePosition, offset, flip, shift } from '@floating-ui/dom'
+import { useTechIcons } from './composables/useTechIcons'
 
 export default {
-  name: 'TechStack',
   props: {
     stack: {
       type: Array,
       required: true
     }
   },
-  methods: {
-    getStackIcon(tech) {
-      switch (tech) {
-        case 'HTML':
-          return htmlIcon;
-        case 'CSS':
-          return cssIcon;
-        case 'Vite':
-          return viteIcon;
-        case 'Node.js':
-          return nodeJsIcon;
-        case 'React.js':
-          return reactIcon;
-        case 'Vue.js':
-          return vueIcon;
-        case 'Vuetify':
-          return vuetifyIcon;
-        case 'JavaScript':
-          return javascriptIcon;
-        case 'Typescript':
-          return typeScriptIcon;
-        case 'Tailwind CSS':
-          return tailwindIcon;
-        case 'Java':
-          return javaIcon;
-        case 'SpringBoot':
-          return springIcon;
-        case 'PostgreSQL':
-          return postgreIcon;
-        case 'Docker':
-          return dockerIcon;
-        case 'Chakra-ui':
-          return chakraIcon;
-        case 'Jest':
-          return jestIcon;
-        case 'Git':
-          return gitIcon;
-        default:
-          return '';
+
+  setup(props) {
+    const activeTooltip = ref(-1)
+    const tooltipElements = ref([])
+    const { getStackIcon, getStackClass } = useTechIcons()
+
+    const showTooltip = async (index) => {
+      activeTooltip.value = index
+      await updatePosition(index)
+    }
+
+    const hideTooltip = () => {
+      activeTooltip.value = -1
+    }
+
+    const updatePosition = async (index) => {
+      await nextTick()
+      const icon = document.querySelectorAll('.tech-icon')[index]
+      const tooltip = tooltipElements.value[index]
+
+      if (icon && tooltip) {
+        computePosition(icon, tooltip, {
+          placement: 'top',
+          middleware: [
+            offset(10),
+            flip(),
+            shift({ padding: 5 }),
+          ],
+        }).then(({ x, y }) => {
+          Object.assign(tooltip.style, {
+            left: `${x}px`,
+            top: `${y}px`,
+          })
+        })
       }
-    },
-    getStackClass(tech) {
-      return tech === 'Docker' || tech === 'Chakra-ui' || tech === 'Java' ? 'h-10 scale-[1.2]' : 'h-10';
+    }
+
+    onMounted(() => {
+      window.addEventListener('resize', updatePosition)
+    })
+
+    onUnmounted(() => {
+      window.removeEventListener('resize', updatePosition)
+    })
+
+    return {
+      activeTooltip,
+      tooltipElements,
+      getStackIcon,
+      getStackClass,
+      showTooltip,
+      hideTooltip
     }
   }
 }
 </script>
 
-<style>
+<style lang="postcss">
 .stack-container {
   position: relative;
+  display: flex;
+  gap: 0.5rem;
 }
 
-.stack-item {
-  transition: transform 0.3s, margin 0.3s;
+.stack-item-wrapper {
   position: relative;
+  transition: transform 0.3s ease;
 }
 
-.stack-item:hover {
+.tech-icon {
+  @apply bg-neutral-900 p-1 rounded-lg grayscale transition-all duration-300;
+  height: 2.3rem;
+}
+
+.tech-icon:hover {
+  @apply grayscale-0;
+}
+
+.stack-item-wrapper:hover {
   transform: scale(1.7);
-  margin: 0 10px;
+  margin: 0 0.5rem;
+  z-index: 10;
+}
+
+.tooltip {
+  @apply absolute bg-neutral-800 text-neutral-200 px-2 py-1 rounded text-sm whitespace-nowrap;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 100;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

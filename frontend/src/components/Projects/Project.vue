@@ -1,8 +1,8 @@
 <template>
     <div class="flex flex-col gap-5 py-10">
         <h1 class="text-5xl font-bold text-neutral-300 mb-5">{{ $t('projects.title') }}</h1>
-        <div class="grid grid-cols-6 gap-3">
-            <div class="col-span-2 h-[600px] p-3 rounded-lg bg-neutral-900 bg-center bg-cover bg-no-repeat flex flex-col justify-between items-start">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+            <div class="col-span-2 h-[600px] p-3 rounded-lg bg-neutral-900 bg-center bg-cover bg-no-repeat flex flex-col justify-between items-start project-card sm:col-span-1">
                 <div class="flex justify-between items-center w-full circular-progress">
                   <img :src="currentProject.logo" :class="getCurrentProjectClass(currentProject.logo)" alt="project-logo">
                   <div class="relative flex justify-center items-center">
@@ -29,32 +29,29 @@
                 </div>
                 <!-- CAROUSEL -->
                 <div class="flex justify-between items-center w-full">
-                    <!-- PREV BUTTON -->
-                    <button id="prev-image" @click="prevProject" @mouseenter="showWhiteArrow('left')" @mouseleave="hideWhiteArrow('left')" class="bg-neutral-300 h-10 w-10 cursor-pointer hover:bg-black rounded-full flex items-center justify-center relative">
-                        <img id="left1" class="h-8" src="../../assets/project-icons/black_arrow_left.svg" alt="arrow-carousel">
-                        <img id="left2" class="h-8 hidden absolute" src="../../assets/project-icons/white_arrow_left.svg" alt="arrow-carousel">
-                    </button>
-                    <!-- NEXT BUTTON -->
-                    <!-- DOTS -->
-                    <div class="flex gap-2 items-center">
-                        <div v-for="(dot, index) in projects" :key="index" class="p-1 rounded-full cursor-pointer" :class="{'bg-neutral-300': index === currentIndex, 'bg-neutral-800': index !== currentIndex}" @click="goToProject(index)"></div>
-                    </div>
-                    <!-- END DOTS -->
-                    <!-- NEXT BUTTON -->
-                    <button id="next-image" @click="nextProject" @mouseenter="showWhiteArrow('right')" @mouseleave="hideWhiteArrow('right')" class="bg-neutral-300 h-10 w-10 cursor-pointer hover:bg-black rounded-full flex items-center justify-center relative">
-                        <img id="right1" class="h-8" src="../../assets/project-icons/black_arrow_right.svg" alt="arrow-carousel">
-                        <img id="right2" class="h-8 hidden absolute" src="../../assets/project-icons/white_arrow_right.svg" alt="arrow-carousel">
-                    </button>
-                    <!-- END NEXT BUTTON -->
+                  <!-- PREV BUTTON -->
+                  <button id="prev-image" @click="prevProject" @mouseenter="showWhiteArrow('left')" @mouseleave="hideWhiteArrow('left')" class="bg-neutral-300 h-10 w-10 cursor-pointer hover:bg-black rounded-full flex items-center justify-center relative">
+                      <img id="left1" class="h-8" src="../../assets/project-icons/black_arrow_left.svg" alt="arrow-carousel">
+                      <img id="left2" class="h-8 hidden absolute" src="../../assets/project-icons/white_arrow_left.svg" alt="arrow-carousel">
+                  </button>
+                  <!-- NEXT BUTTON -->
+                  <!-- DOTS -->
+                  <div class="flex gap-2 items-center">
+                      <div v-for="(dot, index) in projects" :key="index" class="p-1 rounded-full cursor-pointer" :class="{'bg-neutral-300': index === currentIndex, 'bg-neutral-800': index !== currentIndex}" @click="goToProject(index)"></div>
+                  </div>
+                  <!-- END DOTS -->
+                  <!-- NEXT BUTTON -->
+                  <button id="next-image" @click="nextProject" @mouseenter="showWhiteArrow('right')" @mouseleave="hideWhiteArrow('right')" class="bg-neutral-300 h-10 w-10 cursor-pointer hover:bg-black rounded-full flex items-center justify-center relative">
+                      <img id="right1" class="h-8" src="../../assets/project-icons/black_arrow_right.svg" alt="arrow-carousel">
+                      <img id="right2" class="h-8 hidden absolute" src="../../assets/project-icons/white_arrow_right.svg" alt="arrow-carousel">
+                  </button>
                 </div>
+                  <!-- END NEXT BUTTON -->
                 <!-- END CAROUSEL -->
             </div>
-            <iframe
-              :key="currentProject.site"
-              :src="currentProject.site" 
-              class="col-span-4 h-[600px] w-[839px] rounded-lg bg-center bg-cover bg-no-repeat object-scale-down relative bg-white"
-              style=" transform-origin: 0 0;">
-            </iframe>
+            <div class="w-full h-[600px] md:h-[500px]">
+              <Iframe :currentProject="projects[currentIndex]" class="h-full w-full"/>
+            </div>
         </div>
     </div>
 </template>
@@ -65,10 +62,12 @@ import todoLogo from '../../assets/project-icons/project-logo.png';
 import kanbanLogo from '../../assets/project-icons/kanban-logo.png';
 import rpsLogo from '../../assets/project-icons/rock-paper-scissor-logo.png';
 import TechStack from './TechStack.vue';
+import Iframe from './Iframe.vue';
 
 export default {
   components: {
-    TechStack
+    TechStack,
+    Iframe,
   },
   data(){
     return{
@@ -86,7 +85,7 @@ export default {
           title: 'projects.project2.title',
           description: 'projects.project2.description',
           subdescription: 'projects.project2.subdescription',
-          stack: ['React.js', 'Typescript', 'Node.js', 'Chakra-ui', 'Vite', 'Git'],
+          stack: ['React.js', 'TypeScript', 'Node.js', 'Chakra-ui', 'Vite', 'Git'],
           site: 'https://react-kanban-board-chi.vercel.app'
         },
         {
@@ -141,68 +140,6 @@ export default {
       this.resetTimer();
       this.resetProgress();
     },
-    updateTooltips() {
-    // Remova todos os tooltips existentes
-    document.querySelectorAll(".tooltip").forEach((tooltip) => tooltip.remove());
-
-    const stackItems = document.querySelectorAll(".stack-item");
-
-    stackItems.forEach((item) => {
-      // Criação do tooltip
-      let tooltip = document.createElement("div");
-      tooltip.className = "tooltip";
-      tooltip.innerText = item.alt;
-      tooltip.style.visibility = "hidden";
-      tooltip.style.opacity = "0";
-      tooltip.style.position = "absolute";
-      tooltip.style.top = "0";
-      tooltip.style.left = "0";
-      document.body.appendChild(tooltip);
-
-      const showTooltip = () => {
-        tooltip.style.visibility = "visible";
-        tooltip.style.opacity = "1";
-        updateTooltipPosition();
-      };
-
-      const updateTooltipPosition = () => {
-        if (!tooltip || !item) return;
-
-        computePosition(item, tooltip, {
-          placement: "top",
-          middleware: [offset(10), flip(), shift()],
-        }).then(({ x, y }) => {
-          Object.assign(tooltip.style, {
-            top: `${y}px`,
-            left: `${x}px`,
-            backgroundColor: "rgba(0, 0, 0, 0.7)",
-            color: "white",
-            padding: "10px",
-            borderRadius: "3px",
-            fontSize: "12px",
-            whiteSpace: "nowrap",
-            zIndex: 1000,
-            pointerEvents: "none",
-          });
-        });
-      };
-
-      const removeTooltip = () => {
-        tooltip.style.visibility = "hidden";
-        tooltip.style.opacity = "0";
-      };
-
-      // Remova event listeners antigos
-      item.removeEventListener("mouseenter", showTooltip);
-      item.removeEventListener("mousemove", updateTooltipPosition);
-      item.removeEventListener("mouseleave", removeTooltip);
-
-      // Adicione event listeners
-      item.addEventListener("mouseenter", showTooltip);
-      item.addEventListener("mousemove", updateTooltipPosition);
-      item.addEventListener("mouseleave", removeTooltip);
-      });
-    },
     startTimer() {
       this.timer = setInterval(this.nextProject, 10000);
     },
@@ -245,7 +182,6 @@ export default {
     }
   },
   mounted() {
-    this.updateTooltips();
     this.startTimer();
     this.startProgress();
   },
@@ -253,26 +189,10 @@ export default {
     this.stopTimer();
     clearInterval(this.progressInterval);
   },
-  watch: {
-  currentIndex() {
-    this.$nextTick(() => {
-      this.updateTooltips();
-      });
-    }
-  },
 };
 </script>
 
 <style scoped>
-.tooltip {
-  transition: opacity 0.5s ease-in-out;
-  opacity: 0;
-  visibility: hidden;
-  position: absolute; 
-  top: 0; 
-  left: 0; 
-}
-
 button:hover #site1,
 button:hover #left1,
 button:hover #right1 {
