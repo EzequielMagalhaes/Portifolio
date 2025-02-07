@@ -161,7 +161,8 @@ const messages = {
       terms:'Terms & Conditions',
       privacy:'Privacy Policies',
       copyright: 'Ezequiel All Rights Reserved',
-    }
+    },
+    cardTitles: cardTitles.en
   },
   
   //  ||  PORTUGUÊS  ||  //
@@ -309,15 +310,14 @@ const messages = {
       terms:'Termos e condições',
       privacy:'Políticas de privacidade',
       copyright	:'Todos os direitos reservados - Ezequiel',
-    }
+    },
+    cardTitles: cardTitles.pt
   },
 };
-messages.en.cardTitles = cardTitles.en;
-messages.pt.cardTitles = cardTitles.pt;
 
 const i18n = createI18n({
   legacy: false,
-  locale: 'en', // idioma padrão
+  locale: 'en', // default language
   messages,
 });
 
