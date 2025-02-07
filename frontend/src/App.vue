@@ -26,6 +26,7 @@
     <Footer />
     
     <ScrollToTopButton :visible="showScrollButton" />
+    <Analytics mode="production"/>
   </div>
 </template>
 
@@ -39,6 +40,7 @@ import Experience from './components/Experience/Experience.vue'
 import Contact from './components/Contact/Contact.vue'
 import Footer from './components/Footer/Footer.vue'
 import ScrollToTopButton from './components/Navbar/ScrollToTopButton.vue'
+import { Analytics } from '@vercel/analytics/vue';
 
 const showScrollButton = ref(false)
 let observer = null
