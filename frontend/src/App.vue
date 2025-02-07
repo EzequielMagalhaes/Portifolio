@@ -26,7 +26,7 @@
     <Footer />
     
     <ScrollToTopButton :visible="showScrollButton" />
-    <Analytics />
+    <Analytics v-if="AnalyticsComponent" mode="production"/>
   </div>
 </template>
 
@@ -40,7 +40,12 @@ import Experience from './components/Experience/Experience.vue'
 import Contact from './components/Contact/Contact.vue'
 import Footer from './components/Footer/Footer.vue'
 import ScrollToTopButton from './components/Navbar/ScrollToTopButton.vue'
-import { Analytics } from '@vercel/analytics/vue';
+
+let AnalyticsComponent = null;
+
+if (import.meta.env.PROD) {
+  AnalyticsComponent = (await import('@vercel/analytics/vue')).Analytics;
+}
 
 const showScrollButton = ref(false)
 let observer = null
