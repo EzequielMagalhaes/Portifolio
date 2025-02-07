@@ -1,37 +1,44 @@
 <template>
-  <div class="p-5 px-5 md:px-10 lg:px-20 flex flex-col gap-5">
-    <Navbar />
-    <hr class="border-t-2 border-gray-300">
-    
-    <section id="header">
-      <Header />
-    </section>
-    
-    <section id="about">
-      <About />
-    </section>
-    
-    <section id="projects">
-      <Project />
-    </section>
-    
-    <section id="experience">
-      <Experience />
-    </section>
-    
-    <section id="contact">
-      <Contact />
-    </section>
-    
-    <Footer />
-    
-    <ScrollToTopButton :visible="showScrollButton" />
-    <Analytics v-if="AnalyticsComponent" mode="production"/>
-  </div>
+  <Suspense>
+    <template #default>
+      <div class="p-5 px-5 md:px-10 lg:px-20 flex flex-col gap-5">
+        <Navbar />
+        <hr class="border-t-2 border-gray-300">
+        
+        <section id="header">
+          <Header />
+        </section>
+        
+        <section id="about">
+          <About />
+        </section>
+        
+        <section id="projects">
+          <Project />
+        </section>
+        
+        <section id="experience">
+          <Experience />
+        </section>
+        
+        <section id="contact">
+          <Contact />
+        </section>
+        
+        <Footer />
+        
+        <ScrollToTopButton :visible="showScrollButton" />
+        <component :is="AnalyticsComponent" v-if="AnalyticsComponent" mode="production"/>
+      </div>
+    </template>
+    <template #fallback>
+      <div>Loading...</div>
+    </template>
+  </Suspense>
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, shallowRef } from 'vue'
 import Navbar from './components/Navbar/Navbar.vue'
 import Header from './components/Header/Header.vue'
 import About from './components/About/About.vue'
@@ -41,11 +48,14 @@ import Contact from './components/Contact/Contact.vue'
 import Footer from './components/Footer/Footer.vue'
 import ScrollToTopButton from './components/Navbar/ScrollToTopButton.vue'
 
-let AnalyticsComponent = null;
+const AnalyticsComponent = shallowRef(null);
 
-if (import.meta.env.PROD) {
-  AnalyticsComponent = (await import('@vercel/analytics/vue')).Analytics;
-}
+onMounted(async () => {
+  if (import.meta.env.PROD) {
+    const { Analytics } = await import('@vercel/analytics/vue');
+    AnalyticsComponent.value = Analytics;
+  }
+});
 
 const showScrollButton = ref(false)
 let observer = null
@@ -57,7 +67,7 @@ onMounted(() => {
     })
   }, {
     threshold: 0,
-    rootMargin: '-70px 0px 0px 0px' // Adjust based on your header height
+    rootMargin: '-70px 0px 0px 0px' // Ajuste baseado na altura do seu header
   })
 
   const header = document.getElementById('header')

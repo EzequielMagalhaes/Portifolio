@@ -10,13 +10,14 @@ const router = createRouter({
   routes,
 });
 
-if (import.meta.env.PROD) {
-    import('@vercel/analytics/vue').then(({ Analytics }) => {
-      app.use(Analytics)
-    })
-  }
-
 const app = createApp(App);
 app.use(i18n);
 app.use(router);
+
+if (import.meta.env.PROD) {
+  import('@vercel/analytics/vue').then(({ Analytics }) => {
+    app.use(Analytics);
+  });
+}
+
 app.mount('#app');
