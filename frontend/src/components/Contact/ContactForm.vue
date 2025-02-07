@@ -144,4 +144,3 @@ export default {
   padding-top: 8px;
 }
 </style>
-
