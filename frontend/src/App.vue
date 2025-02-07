@@ -26,7 +26,7 @@
     <Footer />
     
     <ScrollToTopButton :visible="showScrollButton" />
-    <Analytics mode="production"/>
+    <Analytics />
   </div>
 </template>
 
